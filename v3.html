@@ -20,8 +20,8 @@
   --pad:clamp(1.1rem,4vw,3.5rem);
 }
 *{box-sizing:border-box;margin:0}
-html{scroll-behavior:smooth;scroll-padding-top:5.5rem;-webkit-text-size-adjust:100%}
-body{background:var(--ivory);color:var(--char);font:400 1rem/1.6 var(--sans);overflow-x:hidden;padding-bottom:calc(76px + env(safe-area-inset-bottom));-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+html{scroll-behavior:smooth;scroll-padding-top:6.5rem;-webkit-text-size-adjust:100%;overflow-x:clip}
+body{background:var(--ivory);color:var(--char);font:400 1rem/1.6 var(--sans);overflow-x:clip;padding-bottom:calc(76px + env(safe-area-inset-bottom));-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 a{color:inherit}
 h1,h2,h3{font-family:var(--serif);font-weight:500;letter-spacing:-.01em;text-wrap:balance}
 :focus-visible{outline:3px solid var(--terra);outline-offset:3px;border-radius:2px}
@@ -150,7 +150,18 @@ dialog .btn{margin-top:1.2rem}
   .map-grid{grid-template-columns:5fr 7fr;gap:4rem;align-items:start}
   .guide-grid{grid-template-columns:1fr 1fr;gap:5rem}
 }
-@media(max-width:899px){.card.single .txt{display:flex;flex-direction:column;gap:1rem}}
+@media(max-width:899px){
+  .top-in{gap:.38rem;padding:.5rem .85rem;min-height:52px}
+  .logo{gap:.32rem}
+  .logo svg{width:22px;height:22px}
+  .logo-word{font-size:1.05rem;letter-spacing:.08em}
+  .logo-23{font-size:.72rem;height:1.35rem;min-width:1.55rem}
+  .sel{padding:.35rem 1.25rem .35rem .55rem;font-size:.76rem;min-height:36px;max-width:6.2rem;background-position:calc(100% - 10px) 50%,calc(100% - 6px) 50%}
+  #install.btn.solid{padding:.35rem .68rem;min-height:36px}
+  .sub-nav{gap:1.1rem;padding:0 .85rem .45rem;font-size:.86rem}
+  .sub-nav a{min-height:36px;padding:.25rem 0}
+  .card.single .txt{display:flex;flex-direction:column;gap:1rem}
+}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.hero-photo .reveal{animation:none}*{transition:none!important}}
 </style>
 </head>
