@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DANJAM 23 | Myeongdong Boutique Hostel</title>
+<meta name="description" content="DANJAM 23 – Myeongdong boutique hostel with a rooftop view of N Seoul Tower. Book direct for the lowest price.">
+<meta name="theme-color" content="#F8F3E9">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Noto+Serif+KR:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet">
+<style>
+:root{
+  --ivory:#F8F3E9; --sand:#E6D7BD; --sand-d:#CDB894; --terra:#B4553A; --terra-d:#8F3F29; --char:#26211E; --char-2:#4A413B;
+  --line:rgba(38,33,30,.2);
+  --serif:'Newsreader','Noto Serif KR','Noto Serif JP','Noto Serif SC','Noto Serif TC',Georgia,serif;
+  --sans:'Pretendard Variable',Pretendard,-apple-system,'Segoe UI','Noto Sans',system-ui,sans-serif;
+  --pad:clamp(1.1rem,4vw,3.5rem);
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:5.5rem;-webkit-text-size-adjust:100%}
+body{background:var(--ivory);color:var(--char);font:400 1rem/1.6 var(--sans);overflow-x:hidden;padding-bottom:calc(76px + env(safe-area-inset-bottom));-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+a{color:inherit}
+h1,h2,h3{font-family:var(--serif);font-weight:500;letter-spacing:-.01em;text-wrap:balance}
+:focus-visible{outline:3px solid var(--terra);outline-offset:3px;border-radius:2px}
+.skip{position:absolute;inset-inline-start:1rem;top:-4rem;background:var(--char);color:var(--ivory);padding:.6rem 1rem;z-index:100}
+.skip:focus{top:1rem}
+
+/* header */
+header.top{position:sticky;top:0;z-index:50;background:rgba(248,243,233,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top)}
+.top-in{display:flex;align-items:center;gap:.75rem;padding:.6rem var(--pad);min-height:60px}
+.logo{display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;margin-inline-end:auto}
+.logo-word{font-family:var(--serif);font-size:1.45rem;font-weight:500;letter-spacing:.14em}
+.logo-23{display:grid;place-items:center;background:var(--terra);color:var(--ivory);font:600 .85rem/1 var(--sans);height:1.7rem;min-width:1.9rem;padding:0 .35rem;border-radius:.9rem .9rem .9rem .2rem}
+nav.main{display:none;gap:2rem;margin-inline-end:1.5rem}
+nav.main a{text-decoration:none;font-size:.95rem;padding:.4rem 0;border-bottom:1px solid transparent}
+nav.main a:hover{border-color:var(--terra)}
+.sel{appearance:none;-webkit-appearance:none;background:transparent;border:1px solid var(--line);border-radius:999px;color:var(--char);font:500 .85rem var(--sans);padding:.5rem 1.6rem .5rem .8rem;min-height:44px;cursor:pointer;background-image:linear-gradient(45deg,transparent 50%,var(--char) 50%),linear-gradient(135deg,var(--char) 50%,transparent 50%);background-position:calc(100% - 13px) 50%,calc(100% - 8px) 50%;background-size:5px 5px;background-repeat:no-repeat;max-width:9.5rem;background-color:var(--ivory)}
+[dir=rtl] .sel{padding:.5rem .8rem .5rem 1.6rem;background-position:13px 50%,8px 50%}
+.sel:hover{border-color:var(--char)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:44px;padding:.6rem 1.3rem;border-radius:999px;border:1px solid var(--char);background:transparent;color:var(--char);font:600 .92rem var(--sans);cursor:pointer;text-decoration:none;transition:background-color .2s,color .2s,border-color .2s}
+.btn:hover{background:var(--char);color:var(--ivory)}
+.btn.solid{background:var(--terra);border-color:var(--terra);color:var(--ivory)}
+.btn.solid:hover{background:var(--terra-d);border-color:var(--terra-d)}
+.btn svg{width:18px;height:18px;flex:none}
+#install .lbl{display:none}
+.sub-nav{display:flex;gap:1.6rem;padding:0 var(--pad) .5rem;font-size:.9rem}
+.sub-nav a{text-decoration:none;padding:.5rem 0;min-height:44px;display:inline-flex;align-items:center}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1fr;position:relative}
+.hero-photo{position:relative;aspect-ratio:4/5;max-height:72svh;width:100%;overflow:hidden;background:#3a3037}
+.hero-photo svg,.hero-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero-photo .reveal{animation:rev 1.5s cubic-bezier(.2,.7,.1,1) both}
+@keyframes rev{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0)}}
+.photo-cap{position:absolute;inset-inline-end:.8rem;bottom:.6rem;color:rgba(255,255,255,.85);font:italic 400 .8rem var(--serif);text-shadow:0 1px 6px rgba(0,0,0,.5)}
+.stamp{position:absolute;z-index:3;inset-inline-start:1rem;top:calc(72svh * .0 + 1rem);width:128px;height:128px;border-radius:50%;background:var(--terra);color:var(--ivory);display:grid;place-items:center;text-align:center;padding:.9rem;font:600 .74rem/1.3 var(--sans);transform:rotate(-8deg);box-shadow:0 0 0 5px var(--ivory)}
+.hero-copy{padding:2.2rem var(--pad) 0}
+.hero h1{font-size:clamp(2.5rem,9.5vw,4.6rem);line-height:1.04;max-width:14ch}
+:lang(ko) .hero h1,:lang(ja) .hero h1,:lang(zh) .hero h1,:lang(zh-TW) .hero h1{line-height:1.2;word-break:keep-all;max-width:12ch}
+.hero p.lead{font-family:var(--serif);font-size:1.2rem;line-height:1.65;margin-top:1.3rem;max-width:34ch;color:var(--char-2)}
+.perk{display:flex;align-items:center;gap:.6rem;margin-top:1.3rem;font-weight:600;font-size:.95rem}
+.perk svg{width:20px;height:20px;color:var(--terra);flex:none}
+
+/* booking */
+.book-card{background:var(--sand);margin:2.2rem var(--pad) 0;padding:1.3rem;border:1px solid var(--char);position:relative;z-index:4}
+.book-card form{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.f{display:flex;flex-direction:column;gap:.3rem}
+.f label{font-size:.85rem;font-weight:600;color:var(--char-2)}
+.f input,.f select{font:500 1rem var(--sans);min-height:48px;padding:.5rem .8rem;border:1px solid var(--char);background:var(--ivory);color:var(--char);border-radius:2px;width:100%}
+.book-card .btn{grid-column:1/-1;min-height:52px;font-size:1rem}
+.live{font-size:.82rem;color:var(--char-2);margin-top:.8rem;display:flex;align-items:center;gap:.5rem}
+.dot{width:8px;height:8px;border-radius:50%;background:#3E7B4F;flex:none}
+
+/* sections */
+section{padding:clamp(3.5rem,9vw,7rem) var(--pad)}
+.h2{font-size:clamp(2rem,6vw,3.4rem);line-height:1.1}
+.rooms{display:grid;grid-template-columns:1fr;gap:2.5rem;margin-top:2.5rem}
+.card{display:flex;flex-direction:column;gap:1rem}
+.ph{position:relative;overflow:hidden;aspect-ratio:4/5;background:linear-gradient(160deg,#E9DCC4,#C9A98A 60%,#A9684F);border-radius:2px}
+.card.double .ph{aspect-ratio:5/4;background:linear-gradient(200deg,#EADFCB,#D3B28C 55%,#8E5640)}
+.card.single .ph{background:linear-gradient(160deg,#ECE3D2,#D8C6A6 60%,#B88E6F)}
+.ph::after{content:attr(data-cap);position:absolute;inset-inline-start:.8rem;bottom:.6rem;font:italic 400 .85rem var(--serif);color:rgba(38,33,30,.75)}
+.ph svg{position:absolute;inset:0;width:100%;height:100%;opacity:.35}
+.card h3{font-size:1.8rem}
+.card p{color:var(--char-2);max-width:42ch}
+.price-row{display:flex;align-items:baseline;gap:.5rem;flex-wrap:wrap}
+.price{font:500 1.7rem var(--serif);font-variant-numeric:tabular-nums}
+.per{font-size:.9rem;color:var(--char-2)}
+.tot{font-size:.9rem;font-weight:600;color:var(--terra-d);min-height:1.4em}
+.card .btn{align-self:flex-start}
+
+/* map */
+#map{background:var(--sand)}
+.map-grid{display:grid;gap:2rem;margin-top:2rem}
+.route{list-style:none;padding:0;display:grid;gap:1rem;margin-top:1.5rem}
+.route li{padding-inline-start:1.1rem;border-inline-start:2px solid var(--terra);max-width:46ch}
+.mapframe{position:relative}
+.mapframe iframe{width:100%;aspect-ratio:4/3;border:1px solid var(--char);display:block;background:var(--ivory);filter:sepia(.35) saturate(.8)}
+.mapframe .btn{margin-top:1rem}
+
+/* guide */
+#guide{background:var(--char);color:var(--ivory)}
+#guide .h2{color:var(--ivory)}
+.guide-grid{display:grid;gap:3rem;margin-top:2.5rem}
+.guide-grid h3{font-size:1.5rem;margin-bottom:1.2rem}
+dl.g{display:grid;gap:1.1rem;max-width:50ch}
+dl.g div{padding-bottom:1.1rem;border-bottom:1px solid rgba(248,243,233,.25)}
+.refund{width:100%;border-collapse:collapse;max-width:50ch}
+.refund td{padding:.9rem 0;border-bottom:1px solid rgba(248,243,233,.25);vertical-align:top}
+.refund td:last-child{text-align:end;font-weight:600;color:#F0B49C;padding-inline-start:1rem}
+footer{background:var(--char);color:rgba(248,243,233,.8);padding:2rem var(--pad) 2.5rem;border-top:1px solid rgba(248,243,233,.2);font-size:.88rem}
+footer .logo-word{color:var(--ivory)}
+.msg{display:flex;gap:1.2rem;flex-wrap:wrap;margin:1rem 0}
+.msg a{padding:.6rem 0;min-height:44px;display:inline-flex;align-items:center}
+
+/* sticky booking bar */
+.bar{position:fixed;inset-inline:0;bottom:0;z-index:60;background:var(--char);color:var(--ivory);display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.7rem var(--pad) calc(.7rem + env(safe-area-inset-bottom));min-height:70px}
+.bar small{display:block;font-size:.78rem;opacity:.8}
+.bar strong{font:500 1.35rem var(--serif);font-variant-numeric:tabular-nums}
+
+dialog{border:1px solid var(--char);background:var(--ivory);color:var(--char);padding:1.6rem;max-width:min(30rem,92vw);border-radius:2px}
+dialog::backdrop{background:rgba(38,33,30,.6)}
+dialog h2{font-size:1.6rem;margin-bottom:.8rem}
+dialog .btn{margin-top:1.2rem}
+
+@media(min-width:900px){
+  body{padding-bottom:0}
+  .bar{display:none}
+  nav.main{display:flex}
+  .sub-nav{display:none}
+  #install .lbl{display:inline}
+  .hero{grid-template-columns:repeat(12,1fr);grid-template-rows:auto auto;padding-top:2rem}
+  .hero-copy{grid-column:1/6;grid-row:1;align-self:center;padding:2rem 0 2rem var(--pad);position:relative;z-index:2}
+  [dir=rtl] .hero-copy{padding:2rem var(--pad) 2rem 0}
+  .hero-photo{grid-column:6/13;grid-row:1/3;aspect-ratio:auto;max-height:none;min-height:min(80svh,780px)}
+  .stamp{inset-inline-start:-64px;top:auto;bottom:34%;width:150px;height:150px;font-size:.8rem}
+  .book-card{grid-column:2/9;grid-row:2;margin:0 0 0 0;align-self:end;transform:translateY(2.5rem);padding:1.5rem 1.7rem}
+  .book-card form{grid-template-columns:1fr 1fr .8fr auto;align-items:end}
+  .book-card .btn{grid-column:auto}
+  .rooms{grid-template-columns:repeat(12,1fr);gap:2rem;margin-top:3.5rem;align-items:start}
+  .card.twin{grid-column:1/6}
+  .card.double{grid-column:6/13;margin-top:5rem}
+  .card.single{grid-column:2/10;flex-direction:row;align-items:stretch;gap:2rem}
+  .card.single .ph{flex:0 0 46%;aspect-ratio:4/3}
+  .card.single .txt{display:flex;flex-direction:column;gap:1rem;justify-content:center}
+  #rooms{padding-top:clamp(6rem,10vw,9rem)}
+  .map-grid{grid-template-columns:5fr 7fr;gap:4rem;align-items:start}
+  .guide-grid{grid-template-columns:1fr 1fr;gap:5rem}
+}
+@media(max-width:899px){.card.single .txt{display:flex;flex-direction:column;gap:1rem}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.hero-photo .reveal{animation:none}*{transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#rooms">Skip to content</a>
+
+<header class="top">
+  <div class="top-in">
+    <a class="logo" href="#" aria-label="DANJAM 23">
+      <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path d="M15 2v6M13.6 8h2.8l1.2 6h-5.2zM12.4 14h5.2l1.6 14h-8.4z" fill="#26211E"/><ellipse cx="15" cy="14" rx="4.2" ry="1.4" fill="#B4553A"/></svg>
+      <span class="logo-word" translate="no">DANJAM</span><span class="logo-23" translate="no">23</span>
+    </a>
+    <nav class="main" aria-label="Main">
+      <a href="#rooms" data-k="rooms"></a><a href="#map" data-k="map"></a><a href="#guide" data-k="guide"></a>
+    </nav>
+    <select class="sel" id="lang" aria-label="Language" translate="no"></select>
+    <select class="sel" id="cur" aria-label="Currency" translate="no"></select>
+    <button class="btn solid" id="install" type="button" aria-label="Install app">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 20h14"/></svg>
+      <span class="lbl" data-k="install"></span>
+    </button>
+  </div>
+  <nav class="sub-nav" aria-label="Sections"><a href="#rooms" data-k="rooms"></a><a href="#map" data-k="map"></a><a href="#guide" data-k="guide"></a></nav>
+</header>
+
+<main>
+<div class="hero" id="top">
+  <div class="hero-photo">
+    <!-- 대체 가능한 SVG 야경 (사진 로딩 실패 시 노출) -->
+    <svg class="reveal" viewBox="0 0 800 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2A2530"/><stop offset=".55" stop-color="#8A4F4A"/><stop offset="1" stop-color="#E0955F"/></linearGradient></defs>
+      <rect width="800" height="1000" fill="url(#sky)"/>
+      <g fill="#FFE9C9" opacity=".8"><circle cx="120" cy="90" r="2"/><circle cx="300" cy="150" r="1.6"/><circle cx="560" cy="70" r="2"/><circle cx="690" cy="190" r="1.5"/><circle cx="440" cy="40" r="1.4"/></g>
+      <path d="M0 720 C120 640 220 600 330 640 C440 680 520 560 640 560 C720 560 780 600 800 620 V1000 H0Z" fill="#1F1B1E"/>
+      <path d="M410 250 V420 M404 420 H416 L424 520 H396Z" stroke="#1F1B1E" stroke-width="5" fill="#1F1B1E"/>
+      <path d="M396 520 L388 640 H432 L424 520Z" fill="#1F1B1E"/>
+      <ellipse cx="410" cy="500" rx="24" ry="9" fill="#F1B07A"/>
+      <path d="M0 800 H800V1000H0Z" fill="#161315"/>
+      <g fill="#F7C98A" opacity=".85"><rect x="60" y="830" width="8" height="10"/><rect x="130" y="860" width="8" height="10"/><rect x="210" y="820" width="8" height="10"/><rect x="300" y="880" width="8" height="10"/><rect x="520" y="840" width="8" height="10"/><rect x="610" y="870" width="8" height="10"/><rect x="700" y="825" width="8" height="10"/></g>
+    </svg>
+    <!-- TODO: 실제 남산타워 루프탑 촬영본(2400×3000 이상)으로 src 교체 -->
+    <img src="https://images.unsplash.com/photo-1517154421773-0529f29ea451?auto=format&fit=crop&w=1600&q=80" width="1600" height="2000" alt="N Seoul Tower seen from the DANJAM 23 rooftop" fetchpriority="high" class="reveal" onerror="this.remove()">
+    <span class="photo-cap" translate="no">DANJAM 23 rooftop</span>
+    <div class="stamp" data-k="b1"></div>
+  </div>
+
+  <div class="hero-copy">
+    <h1 data-k="h1"></h1>
+    <p class="lead" data-k="sub"></p>
+    <p class="perk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/></svg><span data-k="b2"></span></p>
+  </div>
+
+  <div class="book-card" id="book">
+    <form id="bf" novalidate>
+      <div class="f"><label for="ci" data-k="ci"></label><input type="date" id="ci" name="checkin" autocomplete="off" required></div>
+      <div class="f"><label for="co" data-k="co"></label><input type="date" id="co" name="checkout" autocomplete="off" required></div>
+      <div class="f"><label for="gu" data-k="gu"></label>
+        <select id="gu" name="guests" autocomplete="off"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></div>
+      <button class="btn solid" type="submit" data-k="search"></button>
+    </form>
+    <p class="live" id="live" role="status" aria-live="polite"><span class="dot" aria-hidden="true"></span><span data-k="b1"></span></p>
+  </div>
+</div>
+
+<section id="rooms" aria-labelledby="rt">
+  <h2 class="h2" id="rt" data-k="rooms"></h2>
+  <div class="rooms">
+    <article class="card twin">
+      <div class="ph" data-cap="Twin"><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M10 70h34v-14H10zm46 0h34v-14H56zM10 70v10m34-10v10m12-10v10m34-10v10" fill="none" stroke="#26211E" stroke-width=".8"/></svg></div>
+      <h3 data-k="twin"></h3><p data-k="dt"></p>
+      <div class="price-row"><span class="price" data-price="98000"></span><span class="per" data-k="night"></span></div>
+      <div class="tot" data-tot="98000"></div>
+      <a class="btn solid" href="#book" data-k="book"></a>
+    </article>
+    <article class="card double">
+      <div class="ph" data-cap="Double"><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M20 70h60v-16H20zM20 70v10m60-10v10M20 54v-8h60v8" fill="none" stroke="#26211E" stroke-width=".8"/></svg></div>
+      <h3 data-k="double"></h3><p data-k="dd"></p>
+      <div class="price-row"><span class="price" data-price="109000"></span><span class="per" data-k="night"></span></div>
+      <div class="tot" data-tot="109000"></div>
+      <a class="btn solid" href="#book" data-k="book"></a>
+    </article>
+    <article class="card single">
+      <div class="ph" data-cap="Single"><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M30 70h40v-14H30zM30 70v10m40-10v10" fill="none" stroke="#26211E" stroke-width=".8"/></svg></div>
+      <div class="txt">
+        <h3 data-k="single"></h3><p data-k="ds"></p>
+        <div class="price-row"><span class="per" data-k="from"></span><span class="price" data-price="59000"></span><span class="per" data-k="night"></span></div>
+        <div class="tot" data-tot="59000"></div>
+        <a class="btn solid" href="#book" data-k="book"></a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="map" aria-labelledby="mt">
+  <div class="map-grid">
+    <div>
+      <h2 class="h2" id="mt" data-k="m_t"></h2>
+      <p style="margin-top:1.2rem;max-width:44ch" data-k="m_p"></p>
+      <ul class="route"><li data-k="r1"></li><li data-k="r2"></li><li data-k="r3"></li></ul>
+    </div>
+    <div class="mapframe">
+      <iframe title="Map: Myeongdong, Seoul" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.openstreetmap.org/export/embed.html?bbox=126.972%2C37.558%2C126.994%2C37.569&layer=mapnik&marker=37.5636%2C126.9827"></iframe>
+      <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Myeongdong+Seoul+DANJAM+23" target="_blank" rel="noopener" data-k="gmap"></a>
+    </div>
+  </div>
+</section>
+
+<section id="guide" aria-labelledby="gt">
+  <h2 class="h2" id="gt" data-k="g_t"></h2>
+  <div class="guide-grid">
+    <div>
+      <h3 data-k="g_t"></h3>
+      <dl class="g"><div data-k="g1"></div><div data-k="g2"></div><div data-k="g3"></div><div data-k="g4"></div></dl>
+    </div>
+    <div>
+      <h3 data-k="f_t"></h3>
+      <table class="refund"><tbody>
+        <tr><td data-k="f1a"></td><td data-k="f1b"></td></tr>
+        <tr><td data-k="f2a"></td><td data-k="f2b"></td></tr>
+        <tr><td data-k="f3a"></td><td data-k="f3b"></td></tr>
+      </tbody></table>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <a class="logo" href="#top" aria-label="DANJAM 23"><span class="logo-word" translate="no">DANJAM</span><span class="logo-23" translate="no">23</span></a>
+  <div class="msg" translate="no"><a href="#">KakaoTalk</a><a href="#">WhatsApp</a><a href="#">LINE</a><a href="#">WeChat</a></div>
+  <p data-k="foot"></p>
+  <p>© DANJAM 23, Myeongdong, Seoul</p>
+</footer>
+
+<div class="bar">
+  <div><small data-k="from"></small><strong id="barprice" data-price="59000"></strong></div>
+  <a class="btn solid" href="#book" data-k="book"></a>
+</div>
+
+<dialog id="dlg" aria-labelledby="dt1">
+  <h2 id="dt1" data-k="pwa_t"></h2><p data-k="pwa_p"></p>
+  <form method="dialog"><button class="btn solid" data-k="cl"></button></form>
+</dialog>
+
+<script>
+(function(){
+'use strict';
+var K=['rooms','map','guide','h1','sub','b1','b2','ci','co','gu','search','night','book','install','twin','double','single','from'];
+function mk(a){var o={};K.forEach(function(k,i){o[k]=a[i]});return o}
+var C={
+ko:mk(["객실","오시는 길","이용안내","남산타워 아래, 명동의 단잠","서울 한복판, 옥상에서 남산타워가 보이는 신축 부티크 호스텔.","공식 홈페이지 최저가 보장","레이트 체크아웃 무료","체크인","체크아웃","인원","예약 가능 확인","/ 1박","예약하기","앱 설치","트윈","더블","싱글","최저"]),
+en:mk(["Rooms","Location","Guide","A good night’s sleep, under Namsan Tower","A new boutique hostel in Myeongdong with a rooftop facing N Seoul Tower.","Lowest price when you book direct","Free late check-out","Check-in","Check-out","Guests","Check availability","/ night","Book","Install app","Twin","Double","Single","From"]),
+ja:mk(["客室","アクセス","ご利用案内","南山タワーの下で、ぐっすり","明洞の中心、屋上からNソウルタワーを望む新築ブティックホステル。","公式サイト予約が最安値","レイトチェックアウト無料","チェックイン","チェックアウト","人数","空室を確認","/ 1泊","予約する","アプリをインストール","ツイン","ダブル","シングル","最安"]),
+zh:mk(["客房","交通位置","入住指南","南山塔下，一夜好眠","位于首尔明洞中心，屋顶可眺望首尔塔的全新精品青年旅舍。","官网直订最低价","免费延迟退房","入住","退房","人数","查询空房","/ 晚","立即预订","安装应用","双床房","大床房","单人房","低至"]),
+tw:mk(["客房","交通位置","入住指南","南山塔下，一夜好眠","位於首爾明洞中心，屋頂可眺望首爾塔的全新精品青年旅舍。","官網直訂最低價","免費延遲退房","入住","退房","人數","查詢空房","/ 晚","立即預訂","安裝應用程式","雙床房","大床房","單人房","低至"]),
+es:mk(["Habitaciones","Cómo llegar","Guía","Un buen descanso bajo la Torre Namsan","Hostal boutique nuevo en Myeongdong con terraza frente a la Torre N de Seúl.","Mejor precio reservando en directo","Late check-out gratis","Entrada","Salida","Huéspedes","Ver disponibilidad","/ noche","Reservar","Instalar app","Twin","Doble","Individual","Desde"]),
+fr:mk(["Chambres","Accès","Infos pratiques","Bien dormir au pied de la tour Namsan","Nouvelle auberge boutique à Myeongdong, toit-terrasse face à la N Seoul Tower.","Meilleur prix en réservant en direct","Départ tardif gratuit","Arrivée","Départ","Voyageurs","Voir les disponibilités","/ nuit","Réserver","Installer l’app","Twin","Double","Simple","Dès"]),
+de:mk(["Zimmer","Anfahrt","Infos","Tief schlafen unterm Namsan-Turm","Neues Boutique-Hostel in Myeongdong, Dachterrasse mit Blick auf den N Seoul Tower.","Bestpreis bei Direktbuchung","Später Check-out gratis","Anreise","Abreise","Gäste","Verfügbarkeit prüfen","/ Nacht","Buchen","App installieren","Twin","Doppel","Einzel","Ab"]),
+it:mk(["Camere","Come arrivare","Info","Un buon sonno sotto la Namsan Tower","Nuovo ostello boutique a Myeongdong, con terrazza sulla N Seoul Tower.","Miglior prezzo prenotando direttamente","Late check-out gratuito","Check-in","Check-out","Ospiti","Verifica disponibilità","/ notte","Prenota","Installa l’app","Twin","Doppia","Singola","Da"]),
+pt:mk(["Quartos","Como chegar","Informações","Bom sono sob a Torre Namsan","Novo hostel boutique em Myeongdong com terraço de frente para a N Seoul Tower.","Melhor preço reservando direto","Late check-out grátis","Entrada","Saída","Hóspedes","Ver disponibilidade","/ noite","Reservar","Instalar app","Twin","Casal","Solteiro","A partir de"]),
+ru:mk(["Номера","Как добраться","Информация","Крепкий сон под башней Намсан","Новый бутик-хостел в Мёндоне с террасой на крыше и видом на N Seoul Tower.","Лучшая цена при прямом бронировании","Поздний выезд бесплатно","Заезд","Выезд","Гости","Проверить наличие","/ ночь","Забронировать","Установить приложение","Твин","Двухместный","Одноместный","От"]),
+th:mk(["ห้องพัก","การเดินทาง","คู่มือเข้าพัก","หลับสบายใต้หอคอยนัมซาน","บูติกฮอสเทลใหม่ใจกลางเมียงดง ดาดฟ้ามองเห็น N Seoul Tower","ราคาดีที่สุดเมื่อจองตรง","เลทเช็กเอาต์ฟรี","เช็กอิน","เช็กเอาต์","ผู้เข้าพัก","ตรวจสอบห้องว่าง","/ คืน","จองเลย","ติดตั้งแอป","ทวิน","เตียงคู่","เตียงเดี่ยว","เริ่มต้น"]),
+vi:mk(["Phòng","Chỉ đường","Hướng dẫn","Ngủ ngon dưới tháp Namsan","Hostel boutique mới ở Myeongdong, sân thượng nhìn thẳng tháp N Seoul.","Giá tốt nhất khi đặt trực tiếp","Trả phòng muộn miễn phí","Nhận phòng","Trả phòng","Số khách","Kiểm tra phòng trống","/ đêm","Đặt phòng","Cài ứng dụng","Twin","Giường đôi","Phòng đơn","Từ"]),
+id:mk(["Kamar","Lokasi","Panduan","Tidur nyenyak di bawah Menara Namsan","Hostel butik baru di Myeongdong dengan rooftop menghadap N Seoul Tower.","Harga terbaik jika pesan langsung","Late check-out gratis","Check-in","Check-out","Tamu","Cek ketersediaan","/ malam","Pesan","Pasang aplikasi","Twin","Double","Single","Mulai"]),
+ms:mk(["Bilik","Lokasi","Panduan","Tidur lena di bawah Menara Namsan","Hostel butik baharu di Myeongdong dengan bumbung menghadap N Seoul Tower.","Harga terbaik tempahan terus","Daftar keluar lewat percuma","Daftar masuk","Daftar keluar","Tetamu","Semak kekosongan","/ malam","Tempah","Pasang aplikasi","Twin","Double","Single","Dari"]),
+ar:mk(["الغرف","الموقع","الدليل","نوم هانئ تحت برج نامسان","نزل بوتيك جديد في ميونغدونغ بسطح يطل على برج إن سيول.","أفضل سعر عند الحجز المباشر","تسجيل خروج متأخر مجاناً","تسجيل الوصول","تسجيل المغادرة","النزلاء","تحقق من التوفر","/ ليلة","احجز","ثبّت التطبيق","غرفة توين","غرفة مزدوجة","غرفة فردية","من"]),
+hi:mk(["कमरे","लोकेशन","गाइड","नामसान टावर के नीचे सुकून की नींद","म्योंगडोंग में नया बुटीक हॉस्टल, छत से N सियोल टावर का नज़ारा।","सीधी बुकिंग पर सबसे कम कीमत","लेट चेक-आउट मुफ़्त","चेक-इन","चेक-आउट","मेहमान","उपलब्धता देखें","/ रात","बुक करें","ऐप इंस्टॉल करें","ट्विन","डबल","सिंगल","शुरुआत"]),
+tr:mk(["Odalar","Konum","Rehber","Namsan Kulesi’nin altında deliksiz uyku","Myeongdong’da N Seoul Tower manzaralı teraslı yeni butik hostel.","Doğrudan rezervasyonda en düşük fiyat","Ücretsiz geç çıkış","Giriş","Çıkış","Misafir","Müsaitliği gör","/ gece","Rezervasyon yap","Uygulamayı yükle","Twin","Çift kişilik","Tek kişilik","Başlangıç"]),
+nl:mk(["Kamers","Locatie","Info","Slapen onder de Namsan-toren","Nieuwe boutiquehostel in Myeongdong met dakterras op de N Seoul Tower.","Laagste prijs bij direct boeken","Gratis laat uitchecken","Inchecken","Uitchecken","Gasten","Beschikbaarheid bekijken","/ nacht","Boeken","App installeren","Twin","Dubbel","Enkel","Vanaf"]),
+pl:mk(["Pokoje","Dojazd","Informacje","Dobry sen pod wieżą Namsan","Nowy hostel butikowy w Myeongdong z tarasem z widokiem na N Seoul Tower.","Najniższa cena przy rezerwacji bezpośredniej","Późne wymeldowanie gratis","Zameldowanie","Wymeldowanie","Goście","Sprawdź dostępność","/ noc","Rezerwuj","Zainstaluj aplikację","Twin","Dwuosobowy","Jednoosobowy","Od"])
+};
+/* 확장 문구: ko/en/ja/zh. 나머지 언어는 영어로 대체 */
+var X={
+ko:{m_t:"오시는 길",m_p:"서울 중구 명동. 정확한 주소와 출구 안내는 예약 확정 메시지로 함께 보내드립니다.",r1:"지하철 4호선 명동역에서 걸어서 이동합니다.",r2:"인천공항에서는 공항철도로 서울역까지 온 뒤 4호선으로 갈아타 명동역에서 내립니다.",r3:"서울역에서 택시로 약 10분 걸립니다. 정류장 위치는 예약 후 안내합니다.",gmap:"구글 지도에서 보기",g_t:"이용안내",g1:"체크인은 오후 3시부터, 체크아웃은 오전 11시까지입니다.",g2:"체크인 전후 짐 보관은 무료로 도와드립니다.",g3:"밤 11시 이후에는 공용 공간에서 조용히 해주세요.",g4:"체크인할 때 여권 또는 신분증이 필요합니다. 실내는 금연입니다.",f_t:"취소·환불 규정",f1a:"체크인 7일 전까지 취소",f1b:"전액 환불",f2a:"체크인 6일~3일 전 취소",f2b:"50% 환불",f3a:"체크인 2일 전부터, 노쇼",f3b:"환불 불가",dt:"싱글 침대 두 개. 친구나 동료와 함께 쓰기 좋은 방.",dd:"더블 침대 하나. 둘이서 조용히 쉬기 좋은 방.",ds:"싱글 침대 하나. 혼자 머물기 좋은 아늑한 방.",pwa_t:"홈 화면에 앱 설치",pwa_p:"iPhone: 공유 버튼을 누르고 ‘홈 화면에 추가’를 선택하세요. Android: 브라우저 메뉴에서 ‘앱 설치’를 선택하세요.",cl:"닫기",foot:"표시 환율은 참고용이며 결제 시 확정됩니다."},
+en:{m_t:"Getting here",m_p:"Myeongdong, Jung-gu, Seoul. We send the exact address and exit guide with your booking confirmation.",r1:"Walk from Myeongdong Station on Subway Line 4.",r2:"From Incheon Airport, take AREX to Seoul Station, change to Line 4, and get off at Myeongdong.",r3:"A taxi from Seoul Station takes about 10 minutes. We share the drop-off point after you book.",gmap:"Open in Google Maps",g_t:"Guide",g1:"Check-in starts at 3 pm. Check-out is by 11 am.",g2:"We store your luggage free before check-in and after check-out.",g3:"Please keep shared spaces quiet after 11 pm.",g4:"Bring a passport or photo ID to check in. The building is non-smoking.",f_t:"Cancellation and refunds",f1a:"Cancel 7 or more days before check-in",f1b:"Full refund",f2a:"Cancel 6 to 3 days before",f2b:"50% refund",f3a:"Within 2 days of check-in, or no-show",f3b:"No refund",dt:"Two single beds. Good for friends or colleagues sharing.",dd:"One double bed. A quiet room for two.",ds:"One single bed. A snug room for solo stays.",pwa_t:"Install on your home screen",pwa_p:"iPhone: tap Share, then Add to Home Screen. Android: open the browser menu and choose Install app.",cl:"Close",foot:"Exchange rates are for reference. The final amount is set at payment."},
+ja:{m_t:"アクセス",m_p:"ソウル市中区・明洞。正確な住所と出口のご案内は予約確定メールでお送りします。",r1:"地下鉄4号線の明洞駅から徒歩でお越しください。",r2:"仁川空港からは空港鉄道でソウル駅まで行き、4号線に乗り換えて明洞駅で降ります。",r3:"ソウル駅からタクシーで約10分です。降車場所はご予約後にご案内します。",gmap:"Googleマップで開く",g_t:"ご利用案内",g1:"チェックインは午後3時から、チェックアウトは午前11時までです。",g2:"チェックイン前とチェックアウト後の荷物預かりは無料です。",g3:"午後11時以降は共用スペースでお静かにお願いします。",g4:"チェックイン時にパスポートなどの身分証が必要です。館内は禁煙です。",f_t:"キャンセル・返金規定",f1a:"チェックイン7日前までのキャンセル",f1b:"全額返金",f2a:"6日前〜3日前のキャンセル",f2b:"50%返金",f3a:"2日前以降、または無連絡",f3b:"返金不可",dt:"シングルベッド2台。友人や同僚との宿泊に。",dd:"ダブルベッド1台。2人で静かに過ごせるお部屋。",ds:"シングルベッド1台。一人旅に落ち着く小さなお部屋。",pwa_t:"ホーム画面にアプリを追加",pwa_p:"iPhone：共有ボタンから「ホーム画面に追加」を選びます。Android：ブラウザのメニューから「アプリをインストール」を選びます。",cl:"閉じる",foot:"表示レートは目安です。決済時に金額が確定します。"},
+zh:{m_t:"交通位置",m_p:"首尔中区明洞。确切地址和出口指引会随预订确认信息一同发送。",r1:"乘坐地铁4号线，在明洞站下车步行前往。",r2:"从仁川机场乘机场快线到首尔站，换乘4号线，在明洞站下车。",r3:"从首尔站打车约10分钟。下车地点会在预订后告知。",gmap:"在谷歌地图中打开",g_t:"入住指南",g1:"入住时间为下午3点起，退房时间为上午11点前。",g2:"入住前和退房后可免费寄存行李。",g3:"晚上11点后请在公共区域保持安静。",g4:"办理入住需出示护照或身份证件。全楼禁烟。",f_t:"取消与退款规则",f1a:"入住前7天（含）以上取消",f1b:"全额退款",f2a:"入住前6至3天取消",f2b:"退款50%",f3a:"入住前2天内取消或未到店",f3b:"不予退款",dt:"两张单人床，适合朋友或同事同住。",dd:"一张大床，适合两人安静休息。",ds:"一张单人床，适合独自入住的温馨小屋。",pwa_t:"添加到主屏幕",pwa_p:"iPhone：点击分享按钮，选择“添加到主屏幕”。Android：打开浏览器菜单，选择“安装应用”。",cl:"关闭",foot:"所示汇率仅供参考，以支付时金额为准。"}
+};
+X.tw=X.zh;
+var LANGS=[["ko","한국어"],["en","English"],["ja","日本語"],["zh","简体中文"],["tw","繁體中文"],["es","Español"],["fr","Français"],["de","Deutsch"],["it","Italiano"],["pt","Português"],["ru","Русский"],["th","ไทย"],["vi","Tiếng Việt"],["id","Indonesia"],["ms","Melayu"],["ar","العربية"],["hi","हिन्दी"],["tr","Türkçe"],["nl","Nederlands"],["pl","Polski"]];
+var LOC={tw:'zh-TW',zh:'zh-CN'};
+var CURS=['KRW','USD','JPY','CNY','EUR','GBP','THB','VND'];
+var RATE={KRW:1,USD:.00072,JPY:.108,CNY:.0052,EUR:.00066,GBP:.00056,THB:.026,VND:18.2};
+var LCUR={ko:'KRW',ja:'JPY',zh:'CNY',tw:'USD',th:'THB',vi:'VND',de:'EUR',fr:'EUR',es:'EUR',it:'EUR',nl:'EUR',pt:'EUR'};
+var RCUR={KR:'KRW',JP:'JPY',CN:'CNY',US:'USD',GB:'GBP',TH:'THB',VN:'VND',DE:'EUR',FR:'EUR',ES:'EUR',IT:'EUR',NL:'EUR',PT:'EUR',AT:'EUR',IE:'EUR',BE:'EUR',FI:'EUR',GR:'EUR'};
+var RLANG={KR:'ko',JP:'ja',CN:'zh',TW:'tw',HK:'tw',MO:'tw',US:'en',GB:'en',AU:'en',CA:'en',SG:'en',PH:'en',ES:'es',MX:'es',AR:'es',FR:'fr',DE:'de',AT:'de',IT:'it',PT:'pt',BR:'pt',RU:'ru',TH:'th',VN:'vi',ID:'id',MY:'ms',SA:'ar',AE:'ar',EG:'ar',IN:'hi',TR:'tr',NL:'nl',PL:'pl'};
+var $=function(s,r){return (r||document).querySelector(s)}, $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+var st={lang:'en',cur:'USD',nights:0};
+function store(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}}
+
+function matchTag(tag){
+  var l=String(tag||'').toLowerCase(), p=l.split('-'), b=p[0];
+  if(b==='zh'){ return (/hant|tw|hk|mo/.test(l))?'tw':'zh'; }
+  return C[b]?b:null;
+}
+function detectNav(){
+  var tags=(navigator.languages&&navigator.languages.length)?navigator.languages:[navigator.language];
+  for(var i=0;i<tags.length;i++){
+    var m=matchTag(tags[i]); if(m){
+      var reg=null,p=String(tags[i]).split('-'); for(var j=1;j<p.length;j++){ if(/^[A-Za-z]{2}$/.test(p[j])){reg=p[j].toUpperCase();break} }
+      if(!reg){ for(var k=0;k<tags.length;k++){ var q=String(tags[k]).split('-'); if(q[1]&&/^[A-Za-z]{2}$/.test(q[1])&&matchTag(tags[k])===m){reg=q[1].toUpperCase();break} } }
+      return {lang:m,region:reg};
+    }
+  }
+  return null;
+}
+function curFor(lang,region){ return (region&&RCUR[region])||LCUR[lang]||'USD'; }
+
+function t(k){
+  var a=C[st.lang]&&C[st.lang][k]; if(a!==undefined)return a;
+  var b=X[st.lang]&&X[st.lang][k]; if(b!==undefined)return b;
+  return (X.en[k]!==undefined?X.en[k]:C.en[k])||'';
+}
+function fmt(krw){
+  var v=krw*RATE[st.cur], loc=LOC[st.lang]||st.lang;
+  try{return new Intl.NumberFormat(loc,{style:'currency',currency:st.cur,maximumFractionDigits:0}).format(v)}catch(e){return Math.round(v)+' '+st.cur}
+}
+function price(){
+  $$('[data-price]').forEach(function(e){e.textContent=fmt(+e.dataset.price)});
+  $$('[data-tot]').forEach(function(e){e.textContent=st.nights>1?('×'+st.nights+'  '+fmt(+e.dataset.tot*st.nights)):''});
+}
+function render(){
+  var h=document.documentElement; h.lang=LOC[st.lang]||st.lang; h.dir=(st.lang==='ar')?'rtl':'ltr';
+  $$('[data-k]').forEach(function(e){e.textContent=t(e.dataset.k)});
+  $('#lang').value=st.lang; $('#cur').value=st.cur;
+  $('#install').setAttribute('aria-label',t('install'));
+  document.title='DANJAM 23 | '+t('h1');
+  price();
+}
+function setLang(l,save){ st.lang=l; if(save)store('dj_lang',l); render(); }
+function setCur(c,save){ st.cur=c; if(save)store('dj_cur',c); render(); }
+
+/* selects */
+$('#lang').innerHTML=LANGS.map(function(l){return '<option value="'+l[0]+'">'+l[1]+'</option>'}).join('');
+$('#cur').innerHTML=CURS.map(function(c){return '<option>'+c+'</option>'}).join('');
+$('#lang').addEventListener('change',function(e){setLang(e.target.value,true)});
+$('#cur').addEventListener('change',function(e){setCur(e.target.value,true)});
+
+/* 1순위 navigator.language → 2순위 IP */
+(function init(){
+  var sl=store('dj_lang'), sc=store('dj_cur'), nav=detectNav();
+  if(sl&&C[sl]) st.lang=sl; else if(nav) st.lang=nav.lang;
+  if(sc&&RATE[sc]) st.cur=sc; else st.cur=curFor(st.lang,nav&&nav.region);
+  render();
+  var needIP=(!sl&&!nav)||(!sc&&nav&&!nav.region&&nav.lang==='en');
+  if(needIP&&window.fetch){
+    var ctl=window.AbortController?new AbortController():null, to=setTimeout(function(){ctl&&ctl.abort()},3000);
+    fetch('https://ipapi.co/json/',{signal:ctl?ctl.signal:undefined}).then(function(r){return r.json()}).then(function(d){
+      clearTimeout(to); var cc=(d&&d.country_code||'').toUpperCase(); if(!cc)return;
+      if(!sl&&!nav&&RLANG[cc]) st.lang=RLANG[cc];
+      if(!sc){ var c=RCUR[cc]||(CURS.indexOf(d.currency)>-1?d.currency:null); if(c) st.cur=c; else if(!nav) st.cur=curFor(st.lang); }
+      render();
+    }).catch(function(){});
+  }
+})();
+
+/* booking bar */
+function iso(d){var m=('0'+(d.getMonth()+1)).slice(-2),dd=('0'+d.getDate()).slice(-2);return d.getFullYear()+'-'+m+'-'+dd}
+var today=new Date(), d1=new Date(today.getTime()+864e5), d2=new Date(today.getTime()+2*864e5);
+var ci=$('#ci'), co=$('#co'); ci.min=iso(today); co.min=iso(d1); ci.value=iso(d1); co.value=iso(d2);
+ci.addEventListener('change',function(){
+  var n=new Date(ci.value); if(isNaN(n))return; var nx=new Date(n.getTime()+864e5); co.min=iso(nx); if(!co.value||co.value<=ci.value)co.value=iso(nx);
+});
+$('#bf').addEventListener('submit',function(e){
+  e.preventDefault();
+  var a=new Date(ci.value), b=new Date(co.value);
+  if(isNaN(a)||isNaN(b)||b<=a){ co.setCustomValidity('!'); co.reportValidity&&co.reportValidity(); co.setCustomValidity(''); co.focus(); return; }
+  st.nights=Math.round((b-a)/864e5); price();
+  $('#live').lastElementChild.textContent=ci.value+' – '+co.value+'  ×'+st.nights;
+  /* TODO: Beds24 API 연동 시 이 지점에서 실시간 재고·요금 조회 */
+  $('#rooms').scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+});
+$$('a[href="#book"]').forEach(function(a){a.addEventListener('click',function(){setTimeout(function(){ci.focus({preventScroll:true})},400)})});
+
+/* PWA */
+(function(){
+  var man={name:'DANJAM 23',short_name:'DANJAM 23',start_url:location.href.split('#')[0],display:'standalone',background_color:'#F8F3E9',theme_color:'#F8F3E9',
+    icons:[{src:'data:image/svg+xml;utf8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" fill="#B4553A"/><text x="256" y="300" font-family="Georgia,serif" font-size="190" text-anchor="middle" fill="#F8F3E9">23</text></svg>'),sizes:'any',type:'image/svg+xml',purpose:'any'}]};
+  try{var l=document.createElement('link');l.rel='manifest';l.href=URL.createObjectURL(new Blob([JSON.stringify(man)],{type:'application/manifest+json'}));document.head.appendChild(l)}catch(e){}
+  var dp=null, btn=$('#install');
+  window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();dp=e});
+  window.addEventListener('appinstalled',function(){btn.hidden=true});
+  if(window.matchMedia('(display-mode: standalone)').matches||navigator.standalone)btn.hidden=true;
+  btn.addEventListener('click',function(){
+    if(dp){dp.prompt();dp.userChoice.finally(function(){dp=null})}
+    else{var d=$('#dlg'); d.showModal?d.showModal():alert(t('pwa_p'))}
+  });
+  /* 실서비스: /manifest.json 과 /sw.js (오프라인 셸 캐시)를 정적 파일로 배포 */
+})();
+})();
+</script>
+</body>
+</html>
