@@ -4,126 +4,144 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>단잠 23 · 관리자 (사장님·직원용)</title>
-<meta name="theme-color" content="#F5F2EA">
+<meta name="theme-color" content="#F7F4ED">
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="icons/icon-192.png" sizes="192x192">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <style>
 :root{
-  --bg:#F5F2EA;--card:#FFFFFF;--ink:#161B22;--muted:#5C6370;--line:#E3DCCE;
-  --gold:#8F6A1C;--gold-soft:#F3E9D2;
-  --ok:#1F7A45;--ok-soft:#E6F2EA;--ok-line:#BFDECB;
-  --stay:#24548F;--stay-soft:#E7EEF8;--stay-line:#C3D5EC;
-  --book:#7A5A12;--book-soft:#F7EEDC;--book-line:#E4D2AC;
-  --need:#DC2626;--need-deep:#B91C1C;--need-soft:#FEF2F2;--need-line:#F2B8B5;
-  --call:#DC2626;
+  --bg:#F7F4ED;--ink:#16191F;--muted:#6B6E74;--faint:#9A9B9D;
+  --rule:rgba(22,25,31,.14);--rule-soft:rgba(22,25,31,.08);
+  --gold:#8F6A1C;--gold-line:rgba(143,106,28,.4);
+  --need:#DC2626;--need-deep:#B91C1C;--ok:#1F7A45;
+  --tint:rgba(143,106,28,.045);--tint-need:rgba(220,38,38,.04);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%;overflow-x:hidden}
 body{
   background:var(--bg);color:var(--ink);
-  font:400 18px/1.55 -apple-system,'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',system-ui,sans-serif;
-  padding-bottom:calc(30px + env(safe-area-inset-bottom));
+  font:400 17px/1.55 -apple-system,'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',system-ui,sans-serif;
+  padding-bottom:calc(34px + env(safe-area-inset-bottom));
   -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  -webkit-tap-highlight-color:transparent;
 }
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 a{color:inherit;text-decoration:none}
 input{font:inherit;color:inherit}
-:focus-visible{outline:3px solid var(--gold);outline-offset:2px;border-radius:4px}
-.wrap{max-width:760px;margin-inline:auto;padding-inline:14px}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:2px}
+.wrap{max-width:760px;margin-inline:auto;padding-inline:18px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
 /* 헤더 */
-header{position:sticky;top:0;z-index:20;background:rgba(245,242,234,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top)}
-.hin{display:flex;align-items:center;gap:10px;min-height:60px}
-.logo{display:flex;align-items:baseline;gap:6px;margin-inline-end:auto;min-width:0}
-.logo b{font-size:1.22rem;font-weight:800;letter-spacing:.14em}
-.logo i{font-style:normal;font-size:.68rem;font-weight:800;letter-spacing:.08em;color:#FFF9EC;background:var(--gold);padding:2px 6px;border-radius:3px;white-space:nowrap}
-.home{font-size:.84rem;font-weight:700;color:var(--gold);border:1px solid var(--gold);border-radius:6px;padding:.5rem .65rem;min-height:44px;display:inline-flex;align-items:center;white-space:nowrap}
+header{position:sticky;top:0;z-index:20;background:rgba(247,244,237,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--rule);padding-top:env(safe-area-inset-top)}
+.hin{display:flex;align-items:center;gap:12px;min-height:58px}
+.logo{display:flex;align-items:baseline;gap:9px;margin-inline-end:auto;min-width:0}
+.logo b{font-size:1.02rem;font-weight:700;letter-spacing:.2em}
+.logo span{font-size:.68rem;font-weight:600;letter-spacing:.13em;color:var(--gold);white-space:nowrap}
+.home{font-size:.82rem;font-weight:600;color:var(--gold);display:inline-flex;align-items:center;min-height:44px;padding-inline:2px;letter-spacing:.01em}
+.home::after{content:"↗";font-size:.9em;margin-left:4px;opacity:.8}
 
-main{padding-top:12px}
+main{padding-top:2px}
 
-/* 상단 바로가기 */
-.tools{display:grid;grid-template-columns:1.35fr 1fr;gap:8px;margin-bottom:12px}
-.tools a,.tools button{display:flex;align-items:center;justify-content:center;gap:6px;min-height:48px;border-radius:8px;font-size:.92rem;font-weight:800;border:1px solid var(--line);background:#fff;text-align:center;padding:.3rem .5rem}
-.tools a{background:var(--gold);border-color:var(--gold);color:#FFF9EC}
-.tools button{color:var(--muted)}
-.tools svg{width:16px;height:16px;flex:none;fill:none;stroke:currentColor;stroke-width:2;line-height:0}
+/* 상단 바로가기 — 박스 없이 글씨만 */
+.tools{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-block:8px 0}
+.tools a,.tools button{display:inline-flex;align-items:center;gap:7px;min-height:46px}
+.tools a{font-size:.9rem;font-weight:600;color:var(--gold)}
+.tools button{font-size:.84rem;font-weight:500;color:var(--muted)}
+.tools svg{width:16px;height:16px;flex:none;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 
-/* 요약 3칸 */
-.sum{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
-.tile{background:var(--card);border:2px solid var(--line);border-radius:12px;padding:12px 6px 10px;text-align:center;min-width:0}
-.tile .k{display:block;font-size:.82rem;font-weight:800;color:var(--muted);line-height:1.25;margin-bottom:6px;word-break:keep-all}
-.tile .v{display:block;font-size:2.5rem;font-weight:900;line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
-.tile .u{font-size:.9rem;font-weight:800;margin-left:2px;vertical-align:2px}
-.tile.free .v{color:var(--ok)} .tile.free{border-color:var(--ok-line);background:var(--ok-soft)}
-.tile.stay .v{color:var(--stay)} .tile.stay{border-color:var(--stay-line);background:var(--stay-soft)}
-.tile.need{border-color:var(--need);background:var(--need-soft)}
-.tile.need .k{color:var(--need-deep)}
-.tile.need .v{color:var(--need)}
+/* 요약 3칸 — 박스 없이 숫자와 얇은 세로 구분선만 */
+.sum{display:grid;grid-template-columns:repeat(3,1fr);padding:16px 0 22px;border-bottom:1px solid var(--rule)}
+.metric{text-align:center;min-width:0;padding-inline:5px}
+.metric + .metric{border-left:1px solid var(--rule-soft)}
+.metric .k{display:block;font-size:.75rem;font-weight:600;letter-spacing:.03em;color:var(--muted);line-height:1.35;margin-bottom:9px;word-break:keep-all}
+.metric .v{display:block;font-size:2.55rem;font-weight:500;line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-.03em}
+.metric .u{font-size:.8rem;font-weight:500;color:var(--muted);margin-left:3px;vertical-align:6px;letter-spacing:0}
+.metric.need .k,.metric.need .v{color:var(--need)}
 
-/* 이모님 번호 */
-.phone{background:var(--card);border:1px solid var(--line);border-radius:10px;margin-bottom:16px;overflow:hidden}
-.phone > summary{display:flex;align-items:center;gap:8px;min-height:52px;padding:0 14px;cursor:pointer;font-size:.94rem;font-weight:800;color:var(--ink);list-style:none}
+/* 청소 이모님 번호 — 평상시엔 글씨 한 줄 */
+.phone{border-bottom:1px solid var(--rule)}
+.phone > summary{display:flex;align-items:center;gap:9px;min-height:56px;cursor:pointer;list-style:none;font-size:.92rem;font-weight:600;color:var(--muted);transition:color .18s}
 .phone > summary::-webkit-details-marker{display:none}
-.phone > summary .st{margin-inline-start:auto;font-size:.84rem;font-weight:700;color:var(--muted);text-align:right;max-width:60%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.phone > summary .st.ok{color:var(--ok)}
-.phone > summary .arw{transition:transform .2s;flex:none}
-.phone[open] > summary .arw{transform:rotate(180deg)}
-.phone .body{padding:0 14px 14px;border-top:1px solid var(--line)}
-.phone .row{display:grid;grid-template-columns:1fr auto;gap:8px;margin-top:12px}
-.phone input{min-height:52px;border:1px solid var(--line);border-radius:8px;padding:0 12px;background:#fff;font-size:1.05rem;width:100%;min-width:0}
-.phone input::placeholder{color:#9AA0AB}
-.phone .save{min-height:52px;padding:0 20px;border-radius:8px;background:var(--ink);color:#fff;font-weight:800;font-size:.96rem}
-.phone .hint{font-size:.82rem;color:var(--muted);margin-top:8px;line-height:1.5}
+.phone > summary svg.i{flex:none;color:var(--faint)}
+.phone > summary .st{margin-inline-start:auto;font-size:.83rem;font-weight:500;color:var(--faint);text-align:right;max-width:62%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.phone > summary .st.ok{color:var(--ink)}
+.phone .arw{flex:none;color:var(--faint);transition:transform .22s}
+.phone[open] > summary{color:var(--ink)}
+.phone[open] .arw{transform:rotate(180deg)}
+.phone .body{padding:2px 0 18px;animation:fade .2s ease}
+.phone .row{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center}
+.phone input{min-height:46px;border:0;border-bottom:1px solid var(--rule);border-radius:0;background:transparent;padding:0 2px;font-size:1.02rem;width:100%;min-width:0}
+.phone input::placeholder{color:var(--faint)}
+.phone input:focus{outline:none;border-bottom-color:var(--ink);box-shadow:0 1px 0 var(--ink)}
+.phone .save{min-height:44px;padding:0 18px;border-radius:3px;background:var(--ink);color:#FFFDF7;font-weight:600;font-size:.88rem;letter-spacing:.02em;transition:filter .15s}
+.phone .save:active{filter:brightness(.9)}
+.phone .hint{font-size:.8rem;color:var(--faint);margin-top:11px;line-height:1.6}
 
-/* 4단계 아코디언 */
-.step{background:var(--card);border:2px solid var(--line);border-radius:12px;margin-bottom:10px;overflow:hidden}
-.step > summary{display:flex;align-items:center;gap:10px;min-height:66px;padding:0 14px;cursor:pointer;list-style:none}
+/* 4단계 — 박스 없는 한 줄 제목 + 얇은 가로 구분선 */
+.step{border-top:1px solid var(--rule)}
+.step:last-of-type{border-bottom:1px solid var(--rule)}
+.step > summary{
+  display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;align-items:center;gap:12px;
+  min-height:64px;padding:2px 8px;margin-inline:-8px;cursor:pointer;list-style:none;
+  background:transparent;transition:background-color .22s
+}
 .step > summary::-webkit-details-marker{display:none}
-.step .num{display:inline-grid;place-items:center;flex:none;width:30px;height:30px;border-radius:8px;background:var(--gold-soft);color:var(--gold);font-size:.86rem;font-weight:900}
-.step .tt{font-size:1.06rem;font-weight:800;letter-spacing:-.01em;min-width:0;line-height:1.25}
-.step .cnt{margin-inline-start:auto;display:inline-flex;align-items:baseline;gap:2px;flex:none;font-size:1.02rem;font-weight:900;color:var(--muted);font-variant-numeric:tabular-nums}
-.step .cnt b{font-size:1.5rem;font-weight:900;line-height:1;letter-spacing:-.02em}
-.step .arw{flex:none;margin-inline-start:4px;transition:transform .2s;color:#9AA0AB}
+.step .num{font-size:.72rem;font-weight:600;color:var(--faint);font-variant-numeric:tabular-nums;letter-spacing:.06em;transition:color .18s}
+.step .tt{font-size:1.04rem;font-weight:600;letter-spacing:-.005em;color:var(--ink);line-height:1.25;transition:color .18s}
+.step .cnt{display:inline-flex;align-items:baseline;gap:3px;flex:none;font-size:.82rem;font-weight:500;color:var(--muted);font-variant-numeric:tabular-nums}
+.step .cnt b{font-size:1.28rem;font-weight:600;line-height:1;color:var(--ink);letter-spacing:-.02em;transition:color .18s}
+.step .arw{flex:none;color:var(--faint);transition:transform .22s}
 .step[open] .arw{transform:rotate(180deg)}
-.step > .body{padding:2px 12px 12px;border-top:1px solid var(--line)}
-.step.need{border-color:var(--need-line);background:#FFFAFA}
-.step.need > summary .num{background:var(--need-soft);color:var(--need-deep)}
-.step.need .cnt{color:var(--need)} .step.need .cnt b{color:var(--need)}
+.step[open] > summary{background:var(--tint)}
+.step[open] > summary .tt,.step[open] > summary .num{color:var(--gold)}
+.step[open] > .body{animation:fade .2s ease}
+.step.need .tt,.step.need .cnt,.step.need .cnt b{color:var(--need)}
+.step.need .arw{color:rgba(220,38,38,.55)}
+.step.need[open] > summary{background:var(--tint-need)}
+.step.need[open] .num{color:rgba(220,38,38,.7)}
+.step.need[open] .tt{color:var(--need-deep)}
+@keyframes fade{from{opacity:0;transform:translateY(-2px)}to{opacity:1;transform:none}}
 
-/* 방 한 줄 */
-.rrow{display:grid;gap:10px;padding:12px 0;border-bottom:1px solid var(--line)}
-.rrow:last-child{border-bottom:0;padding-bottom:2px}
-.rtop{display:flex;align-items:center;gap:8px;min-width:0;flex-wrap:wrap}
-.rno{font-size:1.5rem;font-weight:900;font-variant-numeric:tabular-nums;letter-spacing:.01em;line-height:1.1}
-.rno small{font-size:.9rem;font-weight:800;color:var(--muted);margin-left:1px}
-.src{font-size:.8rem;font-weight:800;border-radius:999px;padding:.16rem .55rem;background:var(--book-soft);color:var(--book);border:1px solid var(--book-line);white-space:nowrap}
-.src.direct{background:var(--ok-soft);color:var(--ok);border-color:var(--ok-line)}
-.calltag{margin-inline-start:auto;font-size:.78rem;font-weight:900;color:#fff;background:var(--need);border-radius:999px;padding:.2rem .6rem;white-space:nowrap}
-.racts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+/* 방 한 줄 — 박스 없이 글씨 + 얇은 행 구분선 */
+.step > .body{padding-bottom:10px}
+.room{display:grid;gap:13px;padding:16px 0 18px;border-bottom:1px solid var(--rule-soft)}
+.room:last-child{border-bottom:0;padding-bottom:6px}
+.rtop{display:flex;align-items:baseline;gap:9px;min-width:0;flex-wrap:wrap}
+.rno{font-size:1.4rem;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-.01em;line-height:1.1}
+.rno small{font-size:.78rem;font-weight:500;color:var(--muted);margin-left:2px}
+.src{font-size:.82rem;font-weight:500;color:var(--muted);white-space:nowrap}
+.src::before{content:"·";color:var(--faint);margin-right:7px;font-weight:400}
+.calltag{margin-inline-start:auto;font-size:.76rem;font-weight:600;color:var(--need);white-space:nowrap;letter-spacing:.01em}
+
+/* 액션 버튼만 박스 */
+.racts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .racts.one{grid-template-columns:1fr}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;width:100%;min-height:58px;border-radius:9px;font-size:1.06rem;font-weight:900;border:2px solid transparent;line-height:1.2;padding:.3rem .4rem;transition:filter .15s}
-.btn:active{filter:brightness(.94)}
-.btn.call{background:var(--call);color:#fff;font-size:1.08rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;width:100%;min-height:54px;border-radius:3px;font-size:1rem;font-weight:600;letter-spacing:.01em;line-height:1.2;padding:0 6px;transition:filter .15s}
+.btn:active{filter:brightness(.9)}
+.btn.call{background:var(--need);color:#fff}
 .btn.clean{background:var(--ok);color:#fff}
-.btn.in{background:var(--book-soft);color:var(--book);border-color:var(--book-line)}
-.btn.out{background:var(--stay);color:#fff}
-.btn.test{background:#fff;color:var(--gold);border:2px dashed var(--gold);margin-top:12px;min-height:56px;font-size:1rem}
-.empty{padding:16px 4px;color:var(--muted);font-size:.98rem;text-align:center}
-.freelist{display:flex;flex-wrap:wrap;gap:8px;padding:12px 0 2px}
-.freelist span{font-size:1.22rem;font-weight:900;font-variant-numeric:tabular-nums;background:var(--ok-soft);border:1px solid var(--ok-line);color:var(--ok);border-radius:8px;padding:.42rem .75rem}
+.btn.in,.btn.out{background:transparent;color:var(--ink);border:1px solid rgba(22,25,31,.42);min-height:50px;font-weight:600}
+.btn.in:active,.btn.out:active{background:rgba(22,25,31,.05)}
+.btn.test{background:transparent;color:var(--muted);border:1px solid var(--rule);min-height:50px;font-size:.9rem;font-weight:500;margin-top:16px}
+.btn.test:active{background:rgba(22,25,31,.04)}
+
+.empty{padding:16px 0 20px;color:var(--faint);font-size:.9rem}
+.freelist{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;padding:16px 0 4px}
+.freelist span{font-size:1.3rem;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.freelist small{font-size:.76rem;font-weight:500;color:var(--muted);margin-left:2px}
+.freelist span:not(:last-child)::after{content:"·";color:var(--faint);font-weight:400;margin-left:10px}
 
 /* 안내 */
-.note{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:15px;margin-top:20px;font-size:.86rem;color:var(--muted);line-height:1.65}
-.note b{color:var(--ink)}
-footer{margin-top:16px;text-align:center;font-size:.78rem;color:var(--muted)}
+.note{margin-top:26px;padding-top:2px;font-size:.82rem;color:var(--muted);line-height:1.8}
+.note b{color:var(--ink);font-weight:600}
+footer{margin-top:22px;text-align:center;font-size:.73rem;color:var(--faint);letter-spacing:.02em}
 
-#toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(20px);background:#161B22;color:#fff;padding:.85rem 1.1rem;border-radius:8px;font-size:.98rem;font-weight:800;opacity:0;pointer-events:none;transition:.25s;z-index:50;max-width:92vw;text-align:center;line-height:1.4}
+#toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(20px);background:#16191F;color:#FFFDF7;padding:.8rem 1.1rem;border-radius:3px;font-size:.92rem;font-weight:600;opacity:0;pointer-events:none;transition:.25s;z-index:50;max-width:92vw;text-align:center;line-height:1.4}
 #toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
 @media(min-width:640px){
-  .rrow{grid-template-columns:1fr auto;align-items:center;gap:14px}
-  .racts{min-width:330px}
+  .room{grid-template-columns:1fr auto;align-items:center;gap:20px}
+  .racts{min-width:340px}
   .rtop{flex-wrap:nowrap}
 }
 </style>
@@ -132,7 +150,7 @@ footer{margin-top:16px;text-align:center;font-size:.78rem;color:var(--muted)}
 
 <header>
   <div class="wrap hin">
-    <span class="logo"><b>DANJAM</b><i>23 관리자</i></span>
+    <span class="logo"><b>DANJAM</b><span>23 관리자</span></span>
     <a class="home" href="index.html">홈페이지</a>
   </div>
 </header>
@@ -151,17 +169,17 @@ footer{margin-top:16px;text-align:center;font-size:.78rem;color:var(--muted)}
   </div>
 
   <section class="sum" aria-label="한눈에 보기">
-    <div class="tile free"><span class="k">남은 방<br>(빈 방)</span><span class="v" id="nFree">0</span></div>
-    <div class="tile stay"><span class="k">예약 ·<br>입실 중</span><span class="v" id="nStay">0</span></div>
-    <div class="tile need"><span class="k">청소<br>필요</span><span class="v" id="nClean">0</span></div>
+    <div class="metric"><span class="k">남은 방</span><span class="v" id="nFree">0</span></div>
+    <div class="metric"><span class="k">예약·입실 중</span><span class="v" id="nStay">0</span></div>
+    <div class="metric need"><span class="k">청소 필요</span><span class="v" id="nClean">0</span></div>
   </section>
 
   <details class="phone" id="phoneBox">
     <summary>
-      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 3h3l2 5-2 1a12 12 0 0 0 6 6l1-2 5 2v3a2 2 0 0 1-2 2A17 17 0 0 1 4 5a2 2 0 0 1 2-2z"/></svg>
+      <svg class="i" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h3l2 5-2 1a12 12 0 0 0 6 6l1-2 5 2v3a2 2 0 0 1-2 2A17 17 0 0 1 4 5a2 2 0 0 1 2-2z"/></svg>
       청소 이모님 번호
       <span class="st" id="phoneState">아직 없음</span>
-      <svg class="arw" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      <svg class="arw" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
     </summary>
     <div class="body">
       <div class="row">
@@ -175,40 +193,40 @@ footer{margin-top:16px;text-align:center;font-size:.78rem;color:var(--muted)}
 
   <details class="step" id="stepBook" data-step="book">
     <summary>
-      <span class="num">1</span>
+      <span class="num">01</span>
       <span class="tt">예약 완료</span>
       <span class="cnt"><b id="cBook">0</b>개</span>
-      <svg class="arw" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      <svg class="arw" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
     </summary>
     <div class="body" id="bBook"></div>
   </details>
 
   <details class="step" id="stepStay" data-step="stay">
     <summary>
-      <span class="num">2</span>
+      <span class="num">02</span>
       <span class="tt">입실 완료 · 투숙 중</span>
       <span class="cnt"><b id="cStay">0</b>개</span>
-      <svg class="arw" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      <svg class="arw" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
     </summary>
     <div class="body" id="bStay"></div>
   </details>
 
   <details class="step need" id="stepClean" data-step="clean">
     <summary>
-      <span class="num">3</span>
+      <span class="num">03</span>
       <span class="tt">청소 필요</span>
       <span class="cnt"><b id="cClean">0</b>개</span>
-      <svg class="arw" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      <svg class="arw" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
     </summary>
     <div class="body" id="bClean"></div>
   </details>
 
   <details class="step" id="stepFree" data-step="free">
     <summary>
-      <span class="num">4</span>
+      <span class="num">04</span>
       <span class="tt">판매 중 · 빈 방</span>
       <span class="cnt"><b id="cFree">0</b>개</span>
-      <svg class="arw" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      <svg class="arw" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
     </summary>
     <div class="body" id="bFree"></div>
   </details>
@@ -254,7 +272,7 @@ footer{margin-top:16px;text-align:center;font-size:.78rem;color:var(--muted)}
   try { ch = new BroadcastChannel(CH_NAME); } catch(e){ ch = null; }
 
   function $(s){ return document.querySelector(s); }
-  function esc(v){ return String(v).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function esc(v){ return String(v).replace(/[&<>\"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;'}[c]; }); }
 
   function clone(o){ return JSON.parse(JSON.stringify(o)); }
 
@@ -363,8 +381,7 @@ footer{margin-top:16px;text-align:center;font-size:.78rem;color:var(--muted)}
   /* ---------- 그리기 ---------- */
   function srcBadge(src){
     if (!src) return '';
-    var direct = (src === '단잠23' || src === '직접');
-    return '<span class="src' + (direct ? ' direct' : '') + '">' + esc(src) + '</span>';
+    return '<span class="src">' + esc(src) + '</span>';
   }
   function emptyLine(txt){ return '<p class="empty">' + txt + '</p>'; }
 
@@ -387,7 +404,7 @@ footer{margin-top:16px;text-align:center;font-size:.78rem;color:var(--muted)}
 
     /* 1단계 예약 완료 */
     $('#bBook').innerHTML = book.length ? book.map(function(r){
-      return '<div class="rrow">' +
+      return '<div class="room">' +
         '<div class="rtop"><span class="rno">' + esc(r.no) + '<small>호</small></span>' + srcBadge(r.source) + '</div>' +
         '<div class="racts one"><button class="btn in" type="button" data-in="' + esc(r.no) + '">입실 완료</button></div>' +
       '</div>';
@@ -395,16 +412,16 @@ footer{margin-top:16px;text-align:center;font-size:.78rem;color:var(--muted)}
 
     /* 2단계 투숙 중 */
     $('#bStay').innerHTML = stay.length ? stay.map(function(r){
-      return '<div class="rrow">' +
+      return '<div class="room">' +
         '<div class="rtop"><span class="rno">' + esc(r.no) + '<small>호</small></span>' + srcBadge(r.source) + '</div>' +
         '<div class="racts one"><button class="btn out" type="button" data-out="' + esc(r.no) + '">퇴실 완료</button></div>' +
       '</div>';
     }).join('') : emptyLine('지금 투숙 중인 방이 없습니다.');
 
-    /* 3단계 청소 필요 : 왼쪽 빨간 직원 호출 / 오른쪽 청소 완료 */
+    /* 3단계 청소 필요 : 왼쪽 빨간 직원 호출 / 오른쪽 초록 청소 완료 */
     $('#bClean').innerHTML = clean.length ? clean.map(function(r){
       var tag = r.callStaff ? '<span class="calltag">호출함 ' + hhmm(r.calledAt) + '</span>' : '';
-      return '<div class="rrow">' +
+      return '<div class="room">' +
         '<div class="rtop"><span class="rno">' + esc(r.no) + '<small>호</small></span>' + tag + '</div>' +
         '<div class="racts">' +
           '<button class="btn call" type="button" data-call="' + esc(r.no) + '">직원 호출</button>' +
@@ -415,7 +432,7 @@ footer{margin-top:16px;text-align:center;font-size:.78rem;color:var(--muted)}
 
     /* 4단계 판매 중 */
     $('#bFree').innerHTML = (free.length ?
-        '<div class="freelist">' + free.map(function(r){ return '<span>' + esc(r.no) + '</span>'; }).join('') + '</div>'
+        '<div class="freelist">' + free.map(function(r){ return '<span>' + esc(r.no) + '<small>호</small></span>'; }).join('') + '</div>'
         : emptyLine('지금은 빈 방이 없습니다.')) +
       '<button class="btn test" type="button" id="testBook">새 예약 테스트 (빈 방 하나 예약 완료로)</button>';
 
