@@ -5,6 +5,7 @@
    16~23 이유 4쌍 / 24 객실제목 / 25~30 객실명·설명 / 31 예약문의 / 32 객실공통 /
    33 갤러리제목 / 34~37 사진설명 / 38 위치제목 / 39~41 길안내 / 42 지도버튼 /
    43 안내제목 / 44~49 안내 3쌍 / 50~52 예약창 / 53 관리자 / 54 앱설치 / 55 밝게 / 56 어둡게 / 57 설치안내
+   지도 경로 찾기 두 버튼은 아래 ROUTES 에 mapGoogleRoute · mapNaverRoute 이름으로 들어 있다.
 */
 const LANGS = [
   { c: 'ko', n: '한국어' },
@@ -810,4 +811,28 @@ pl: [
 'Jasny','Ciemny',
 'Otwórz menu przeglądarki i wybierz „Dodaj do ekranu głównego”.'
 ]
+};
+
+/* 지도 경로 찾기 두 버튼 (2026-11-23 추가). 화면의 data-i18n 이름으로 연결한다. */
+const ROUTES = {
+  ko: { mapGoogleRoute: '구글 지도로 경로 찾기', mapNaverRoute: '네이버 지도로 경로 찾기' },
+  en: { mapGoogleRoute: 'Directions on Google Maps', mapNaverRoute: 'Directions on Naver Maps' },
+  ja: { mapGoogleRoute: 'Googleマップで経路検索', mapNaverRoute: 'Naverマップで経路検索' },
+  'zh-Hans': { mapGoogleRoute: '用谷歌地图查路线', mapNaverRoute: '用Naver地图查路线' },
+  'zh-Hant': { mapGoogleRoute: '用Google地圖查路線', mapNaverRoute: '用Naver地圖查路線' },
+  es: { mapGoogleRoute: 'Cómo llegar con Google Maps', mapNaverRoute: 'Cómo llegar con Naver Maps' },
+  fr: { mapGoogleRoute: 'Itinéraire sur Google Maps', mapNaverRoute: 'Itinéraire sur Naver Maps' },
+  de: { mapGoogleRoute: 'Route mit Google Maps', mapNaverRoute: 'Route mit Naver Maps' },
+  it: { mapGoogleRoute: 'Indicazioni con Google Maps', mapNaverRoute: 'Indicazioni con Naver Maps' },
+  pt: { mapGoogleRoute: 'Rota no Google Maps', mapNaverRoute: 'Rota no Naver Maps' },
+  ru: { mapGoogleRoute: 'Маршрут в Google Картах', mapNaverRoute: 'Маршрут в Naver Картах' },
+  vi: { mapGoogleRoute: 'Chỉ đường bằng Google Maps', mapNaverRoute: 'Chỉ đường bằng Naver Maps' },
+  th: { mapGoogleRoute: 'เส้นทางด้วย Google Maps', mapNaverRoute: 'เส้นทางด้วย Naver Maps' },
+  id: { mapGoogleRoute: 'Rute dengan Google Maps', mapNaverRoute: 'Rute dengan Naver Maps' },
+  ms: { mapGoogleRoute: 'Laluan dengan Google Maps', mapNaverRoute: 'Laluan dengan Naver Maps' },
+  ar: { mapGoogleRoute: 'الاتجاهات في خرائط Google', mapNaverRoute: 'الاتجاهات في خرائط Naver' },
+  tr: { mapGoogleRoute: 'Google Haritalar ile yol tarifi', mapNaverRoute: 'Naver Haritalar ile yol tarifi' },
+  hi: { mapGoogleRoute: 'Google Maps से रास्ता', mapNaverRoute: 'Naver Maps से रास्ता' },
+  nl: { mapGoogleRoute: 'Route met Google Maps', mapNaverRoute: 'Route met Naver Maps' },
+  pl: { mapGoogleRoute: 'Trasa w Google Maps', mapNaverRoute: 'Trasa w Naver Maps' }
 };

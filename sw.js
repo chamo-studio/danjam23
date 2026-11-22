@@ -1,8 +1,10 @@
 /* 단잠 23 — 홈 화면 앱(PWA) 캐시. 파일을 새로 올리면 VERSION 숫자를 올려 주세요. */
-var VERSION = 'danjam23-v2';
+var VERSION = 'danjam23-v3';
 var CORE = [
   './',
   './index.html',
+  './admin.html',
+  './clean.html',
   './i18n.js',
   './manifest.json',
   './images/roof-tower.jpg',

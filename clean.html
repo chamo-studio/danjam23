@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>단잠 23 · 청소 (이모님 화면)</title>
+<meta name="theme-color" content="#F7F4EC">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="icons/icon-192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<style>
+:root{
+  --bg:#F7F4EC;--card:#FFFFFF;--ink:#161B22;--muted:#5C6370;--line:#E3DCCE;
+  --need:#DC2626;--need-deep:#B91C1C;--need-soft:#FEF2F2;
+  --ok:#1F7A45;--ok-soft:#E6F2EA;--ok-line:#BFDECB;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;overflow-x:hidden}
+body{
+  background:var(--bg);color:var(--ink);
+  font:400 18px/1.5 -apple-system,'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',system-ui,sans-serif;
+  padding-bottom:calc(26px + env(safe-area-inset-bottom));
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--need);outline-offset:2px;border-radius:4px}
+.wrap{max-width:640px;margin-inline:auto;padding-inline:14px}
+
+header{background:#fff;border-bottom:2px solid var(--line);padding-top:env(safe-area-inset-top);position:sticky;top:0;z-index:10}
+.hin{display:flex;align-items:center;gap:10px;min-height:64px}
+.logo{display:flex;align-items:baseline;gap:6px;margin-inline-end:auto;min-width:0}
+.logo b{font-size:1.16rem;font-weight:900;letter-spacing:.12em}
+.logo i{font-style:normal;font-size:.72rem;font-weight:900;color:#fff;background:var(--ok);padding:3px 7px;border-radius:4px;white-space:nowrap}
+.now{font-size:.84rem;font-weight:800;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+
+main{padding-top:16px}
+
+h2{display:flex;align-items:center;gap:8px;font-size:1.06rem;font-weight:900;margin:0 0 10px;letter-spacing:-.01em}
+h2 .n{display:inline-grid;place-items:center;min-width:28px;height:28px;padding:0 8px;border-radius:999px;background:#161B22;color:#fff;font-size:.9rem;font-weight:900}
+h2.red{color:var(--need-deep)} h2.red .n{background:var(--need)}
+
+/* 긴급 호출 */
+.urgent{display:grid;gap:12px;margin-bottom:22px}
+.urgent:empty{display:none}
+.ucard{background:#fff;border:4px solid var(--need);border-radius:16px;padding:16px 14px 14px;box-shadow:0 10px 26px -14px rgba(220,38,38,.75);animation:siren 1.8s ease-in-out infinite}
+@keyframes siren{0%,100%{box-shadow:0 10px 26px -14px rgba(220,38,38,.7)}50%{box-shadow:0 10px 34px -8px rgba(220,38,38,.95)}}
+.ucard .top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:4px}
+.badge{background:var(--need);color:#fff;font-size:.86rem;font-weight:900;border-radius:999px;padding:.26rem .7rem;letter-spacing:.02em;white-space:nowrap}
+.badge.soft{background:var(--need-soft);color:var(--need-deep);border:1px solid #F3B6B3}
+.ucard .no{font-size:3.4rem;font-weight:900;line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.ucard .no small{font-size:1.2rem;font-weight:900;color:var(--muted);margin-left:2px}
+.ucard .time{font-size:.9rem;font-weight:800;color:var(--need-deep);margin:6px 0 12px}
+.ucard .done{display:block;width:100%;min-height:70px;border-radius:12px;background:var(--ok);color:#fff;font-size:1.32rem;font-weight:900;letter-spacing:.02em}
+.ucard .done:active{filter:brightness(.94)}
+
+/* 일반 청소 */
+.list{display:grid;gap:10px}
+.card{background:#fff;border:2px solid var(--line);border-radius:14px;padding:14px}
+.card .top{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.card .no{font-size:2.1rem;font-weight:900;line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.card .no small{font-size:1rem;font-weight:900;color:var(--muted);margin-left:2px}
+.card .done{display:block;width:100%;min-height:64px;border-radius:11px;background:var(--ok-soft);border:2px solid var(--ok-line);color:var(--ok);font-size:1.2rem;font-weight:900}
+.card .done:active{filter:brightness(.97)}
+
+.empty{background:#fff;border:2px dashed var(--line);border-radius:14px;padding:34px 18px;text-align:center;color:var(--muted);font-size:1.06rem;font-weight:700;line-height:1.6}
+
+.note{background:#fff;border:1px solid var(--line);border-radius:12px;padding:15px;margin-top:24px;font-size:.84rem;color:var(--muted);line-height:1.7}
+.note b{color:var(--ink)}
+.footlinks{display:flex;justify-content:center;gap:8px;margin-top:16px}
+.footlinks a{display:inline-flex;align-items:center;min-height:46px;padding:.4rem .9rem;border:1px solid var(--line);border-radius:8px;background:#fff;font-size:.86rem;font-weight:800;color:var(--muted)}
+footer{margin-top:14px;text-align:center;font-size:.76rem;color:var(--muted)}
+
+#toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%) translateY(20px);background:#161B22;color:#fff;padding:.85rem 1.05rem;border-radius:8px;font-size:.98rem;font-weight:800;opacity:0;pointer-events:none;transition:.25s;z-index:50;max-width:92vw;text-align:center}
+#toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap hin">
+    <span class="logo"><b>DANJAM</b><i>청소</i></span>
+    <span class="now" id="now">-</span>
+  </div>
+</header>
+
+<main class="wrap">
+  <section aria-label="긴급 호출">
+    <div class="urgent" id="urgent"></div>
+  </section>
+
+  <section aria-label="청소할 방">
+    <h2><span class="n" id="nClean">0</span> 청소할 방</h2>
+    <div class="list" id="list"></div>
+  </section>
+
+  <div class="note">
+    지금은 임시 시안이라 같은 기기 안에서 창을 여러 개 열면 즉시 연동됩니다. 추후 무료 데이터베이스(DB)를 연결하면 사장님 폰과 이모님 폰 사이에서도 원격으로 실시간 연동됩니다.
+  </div>
+
+  <div class="footlinks">
+    <a href="admin.html">사장님 화면으로</a>
+  </div>
+
+  <footer>단잠 23 DANJAM 23 · 청소 화면 · 2026</footer>
+</main>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  'use strict';
+
+  var KEY = 'danjam23_rooms_v1';
+  var CH_NAME = 'danjam23_sync';
+
+  var data = load();
+  var ch = null;
+  try { ch = new BroadcastChannel(CH_NAME); } catch(e){ ch = null; }
+
+  function $(s){ return document.querySelector(s); }
+  function esc(v){ return String(v).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+
+  function normalise(d){
+    if (!d || !d.rooms || !d.rooms.length) return null;
+    d.rooms.forEach(function(r){
+      if (typeof r.callStaff !== 'boolean') r.callStaff = false;
+    });
+    return d;
+  }
+  function load(){
+    try {
+      var raw = localStorage.getItem(KEY);
+      var d = normalise(raw ? JSON.parse(raw) : null);
+      if (d) return d;
+    } catch(e){}
+    return { rooms: [] };
+  }
+  function save(){
+    try { localStorage.setItem(KEY, JSON.stringify(data)); } catch(e){}
+  }
+  function toast(msg){
+    var el = $('#toast');
+    el.textContent = msg; el.classList.add('on');
+    clearTimeout(toast.t);
+    toast.t = setTimeout(function(){ el.classList.remove('on'); }, 2400);
+  }
+  function hhmm(ts){
+    if (!ts) return '';
+    var d = new Date(ts);
+    var p = function(n){ return (n < 10 ? '0' : '') + n; };
+    return p(d.getHours()) + ':' + p(d.getMinutes());
+  }
+
+  function finish(no){
+    for (var i = 0; i < data.rooms.length; i++){
+      if (data.rooms[i].no === no){
+        data.rooms[i].state = 'available';
+        data.rooms[i].callStaff = false;
+        data.rooms[i].calledAt = null;
+        data.rooms[i].source = '';
+        break;
+      }
+    }
+    data.updatedAt = Date.now();
+    save();
+    if (ch){ try { ch.postMessage({ type: 'state', rooms: data.rooms, at: Date.now() }); } catch(e){} }
+    render();
+    toast(no + '호 청소 완료 · 판매 중으로 바뀌었습니다');
+  }
+
+  function render(){
+    var clean = data.rooms.filter(function(r){ return r.state === 'cleaning'; });
+    var called = clean.filter(function(r){ return r.callStaff === true; });
+    var normal = clean.filter(function(r){ return r.callStaff !== true; });
+
+    $('#nClean').textContent = clean.length;
+
+    $('#urgent').innerHTML = called.length ? (
+      '<h2 class="red"><span class="n">' + called.length + '</span> 긴급 호출</h2>' +
+      called.map(function(r){
+        return '<div class="ucard">' +
+          '<div class="top"><span class="badge">긴급 호출</span><span class="badge soft">사장님 호출</span></div>' +
+          '<div class="no">' + esc(r.no) + '<small>호</small></div>' +
+          '<div class="time">' + (r.calledAt ? hhmm(r.calledAt) + '에 호출됨' : '호출됨') + '</div>' +
+          '<button class="done" type="button" data-done="' + esc(r.no) + '">청소 완료</button>' +
+        '</div>';
+      }).join('')
+    ) : '';
+
+    $('#list').innerHTML = normal.length ? normal.map(function(r){
+      return '<div class="card">' +
+        '<div class="top"><span class="no">' + esc(r.no) + '<small>호</small></span></div>' +
+        '<button class="done" type="button" data-done="' + esc(r.no) + '">청소 완료</button>' +
+      '</div>';
+    }).join('') : '<div class="empty">' + (clean.length ? '호출된 방은 위에서 확인해 주세요.' : '지금은 청소할 방이 없습니다.<br>새 호출이 오면 여기에 바로 뜹니다.') + '</div>';
+  }
+
+  document.addEventListener('click', function(e){
+    var t = e.target.closest('button');
+    if (t && t.dataset.done) finish(t.dataset.done);
+  });
+
+  function syncIncoming(payload){
+    if (payload && payload.rooms && payload.rooms.length){
+      data = normalise({ rooms: payload.rooms }) || data;
+      save();
+    } else {
+      data = load();
+    }
+    render();
+  }
+  if (ch){
+    ch.addEventListener('message', function(ev){
+      if (!ev.data || ev.data.type !== 'state') return;
+      var before = (data.rooms || []).filter(function(r){ return r.callStaff; }).length;
+      syncIncoming(ev.data);
+      var after = (data.rooms || []).filter(function(r){ return r.callStaff; }).length;
+      if (after > before) toast('사장님이 직원을 호출했습니다');
+    });
+  }
+  window.addEventListener('storage', function(e){
+    if (e.key === KEY) syncIncoming(null);
+  });
+
+  /* 시계 */
+  function tick(){
+    var d = new Date();
+    var days = ['일','월','화','수','목','금','토'];
+    var p = function(n){ return (n < 10 ? '0' : '') + n; };
+    $('#now').textContent = (d.getMonth() + 1) + '월 ' + d.getDate() + '일 ' + days[d.getDay()] + ' ' + p(d.getHours()) + ':' + p(d.getMinutes());
+  }
+  tick(); setInterval(tick, 30000);
+
+  render();
+})();
+</script>
+</body>
+</html>

@@ -10,96 +10,122 @@
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <style>
 :root{
-  --bg:#F5F2EA;--card:#FFFFFF;--ink:#1A1F27;--muted:#5C6370;--line:#E3DCCE;
+  --bg:#F5F2EA;--card:#FFFFFF;--ink:#161B22;--muted:#5C6370;--line:#E3DCCE;
   --gold:#8F6A1C;--gold-soft:#F3E9D2;
-  --ok:#2E7D4F;--ok-soft:#E6F2EA;
-  --stay:#2A5D9E;--stay-soft:#E7EEF8;
-  --need:#B93B2B;--need-soft:#FBEAE7;
-  --ready:#6B6252;--ready-soft:#EFEBE1;
+  --ok:#1F7A45;--ok-soft:#E6F2EA;--ok-line:#BFDECB;
+  --stay:#24548F;--stay-soft:#E7EEF8;--stay-line:#C3D5EC;
+  --book:#7A5A12;--book-soft:#F7EEDC;--book-line:#E4D2AC;
+  --need:#DC2626;--need-deep:#B91C1C;--need-soft:#FEF2F2;--need-line:#F2B8B5;
+  --call:#DC2626;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{-webkit-text-size-adjust:100%}
+html{-webkit-text-size-adjust:100%;overflow-x:hidden}
 body{
   background:var(--bg);color:var(--ink);
-  font:400 17px/1.6 -apple-system,'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',system-ui,sans-serif;
-  padding-bottom:calc(28px + env(safe-area-inset-bottom));
-  -webkit-font-smoothing:antialiased;
+  font:400 18px/1.55 -apple-system,'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',system-ui,sans-serif;
+  padding-bottom:calc(30px + env(safe-area-inset-bottom));
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
 }
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 a{color:inherit;text-decoration:none}
+input{font:inherit;color:inherit}
 :focus-visible{outline:3px solid var(--gold);outline-offset:2px;border-radius:4px}
-.wrap{max-width:760px;margin-inline:auto;padding-inline:16px}
+.wrap{max-width:760px;margin-inline:auto;padding-inline:14px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
 /* 헤더 */
-header{position:sticky;top:0;z-index:20;background:rgba(245,242,234,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top)}
-.hin{display:flex;align-items:center;gap:10px;min-height:62px}
-.logo{display:flex;align-items:baseline;gap:6px;margin-inline-end:auto}
-.logo b{font-size:1.24rem;font-weight:800;letter-spacing:.16em}
-.logo i{font-style:normal;font-size:.68rem;font-weight:800;letter-spacing:.1em;color:#FFF9EC;background:var(--gold);padding:2px 6px;border-radius:3px}
-.today{font-size:.86rem;font-weight:700;color:var(--muted)}
-.today b{display:block;color:var(--ink);font-size:1rem}
-.home{font-size:.86rem;font-weight:700;color:var(--gold);border:1px solid var(--gold);border-radius:6px;padding:.5rem .7rem;min-height:44px;display:inline-flex;align-items:center}
-@media(max-width:420px){.today{display:none}}
+header{position:sticky;top:0;z-index:20;background:rgba(245,242,234,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top)}
+.hin{display:flex;align-items:center;gap:10px;min-height:60px}
+.logo{display:flex;align-items:baseline;gap:6px;margin-inline-end:auto;min-width:0}
+.logo b{font-size:1.22rem;font-weight:800;letter-spacing:.14em}
+.logo i{font-style:normal;font-size:.68rem;font-weight:800;letter-spacing:.08em;color:#FFF9EC;background:var(--gold);padding:2px 6px;border-radius:3px;white-space:nowrap}
+.home{font-size:.84rem;font-weight:700;color:var(--gold);border:1px solid var(--gold);border-radius:6px;padding:.5rem .65rem;min-height:44px;display:inline-flex;align-items:center;white-space:nowrap}
 
-main{padding-top:18px}
+main{padding-top:12px}
 
-/* 요약 */
-.sum{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:22px}
-.tile{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 12px;text-align:center;box-shadow:0 2px 0 rgba(0,0,0,.02)}
-.tile .k{display:block;font-size:.82rem;font-weight:800;letter-spacing:.02em;color:var(--muted);margin-bottom:4px}
-.tile .v{display:block;font-size:2rem;font-weight:800;line-height:1.1;font-variant-numeric:tabular-nums}
-.tile.need .v{color:var(--need)} .tile.need{border-color:#EBC3BC;background:var(--need-soft)}
-.tile.stay .v{color:var(--stay)}
-.tile.ok .v{color:var(--ok)}
+/* 상단 바로가기 */
+.tools{display:grid;grid-template-columns:1.35fr 1fr;gap:8px;margin-bottom:12px}
+.tools a,.tools button{display:flex;align-items:center;justify-content:center;gap:6px;min-height:48px;border-radius:8px;font-size:.92rem;font-weight:800;border:1px solid var(--line);background:#fff;text-align:center;padding:.3rem .5rem}
+.tools a{background:var(--gold);border-color:var(--gold);color:#FFF9EC}
+.tools button{color:var(--muted)}
+.tools svg{width:16px;height:16px;flex:none;fill:none;stroke:currentColor;stroke-width:2;line-height:0}
 
-/* 섹션 제목 */
-h2{display:flex;align-items:center;gap:8px;font-size:1.05rem;font-weight:800;margin:26px 0 10px}
-h2 span.n{display:inline-grid;place-items:center;min-width:26px;height:26px;padding:0 7px;border-radius:999px;background:var(--need);color:#fff;font-size:.82rem}
-h2.plain span.n{background:var(--gold-soft);color:var(--gold)}
-.hint{font-size:.85rem;color:var(--muted);margin:-4px 0 12px}
+/* 요약 3칸 */
+.sum{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+.tile{background:var(--card);border:2px solid var(--line);border-radius:12px;padding:12px 6px 10px;text-align:center;min-width:0}
+.tile .k{display:block;font-size:.82rem;font-weight:800;color:var(--muted);line-height:1.25;margin-bottom:6px;word-break:keep-all}
+.tile .v{display:block;font-size:2.5rem;font-weight:900;line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.tile .u{font-size:.9rem;font-weight:800;margin-left:2px;vertical-align:2px}
+.tile.free .v{color:var(--ok)} .tile.free{border-color:var(--ok-line);background:var(--ok-soft)}
+.tile.stay .v{color:var(--stay)} .tile.stay{border-color:var(--stay-line);background:var(--stay-soft)}
+.tile.need{border-color:var(--need);background:var(--need-soft)}
+.tile.need .k{color:var(--need-deep)}
+.tile.need .v{color:var(--need)}
 
-/* 청소 카드 */
-.todo{display:grid;gap:10px}
-.todo .row{background:var(--card);border:1px solid #EBC3BC;border-inline-start:6px solid var(--need);border-radius:10px;padding:14px}
-.todo .top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-.todo .no{font-size:1.5rem;font-weight:800;font-variant-numeric:tabular-nums}
-.todo .ty{font-size:.9rem;font-weight:700;color:var(--muted);background:var(--ready-soft);border-radius:999px;padding:.18rem .6rem}
-.todo .why{margin-inline-start:auto;font-size:.85rem;font-weight:800;color:var(--need)}
-.empty{background:var(--card);border:1px dashed var(--line);border-radius:10px;padding:18px;text-align:center;color:var(--muted);font-size:.95rem}
+/* 이모님 번호 */
+.phone{background:var(--card);border:1px solid var(--line);border-radius:10px;margin-bottom:16px;overflow:hidden}
+.phone > summary{display:flex;align-items:center;gap:8px;min-height:52px;padding:0 14px;cursor:pointer;font-size:.94rem;font-weight:800;color:var(--ink);list-style:none}
+.phone > summary::-webkit-details-marker{display:none}
+.phone > summary .st{margin-inline-start:auto;font-size:.84rem;font-weight:700;color:var(--muted);text-align:right;max-width:60%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.phone > summary .st.ok{color:var(--ok)}
+.phone > summary .arw{transition:transform .2s;flex:none}
+.phone[open] > summary .arw{transform:rotate(180deg)}
+.phone .body{padding:0 14px 14px;border-top:1px solid var(--line)}
+.phone .row{display:grid;grid-template-columns:1fr auto;gap:8px;margin-top:12px}
+.phone input{min-height:52px;border:1px solid var(--line);border-radius:8px;padding:0 12px;background:#fff;font-size:1.05rem;width:100%;min-width:0}
+.phone input::placeholder{color:#9AA0AB}
+.phone .save{min-height:52px;padding:0 20px;border-radius:8px;background:var(--ink);color:#fff;font-weight:800;font-size:.96rem}
+.phone .hint{font-size:.82rem;color:var(--muted);margin-top:8px;line-height:1.5}
 
-/* 버튼 */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:56px;border-radius:8px;font-size:1.05rem;font-weight:800;border:1px solid transparent;transition:filter .15s,background-color .15s}
-.btn:active{filter:brightness(.95)}
-.btn.clean{background:var(--ok);color:#fff;font-size:1.12rem}
-.btn.out{background:var(--stay-soft);color:var(--stay);border-color:#C3D5EC}
-.btn.in{background:var(--ready-soft);color:var(--ready);border-color:#DCD5C6}
-.btn.row2{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:auto}
-.btn.row2 > button{width:100%}
+/* 4단계 아코디언 */
+.step{background:var(--card);border:2px solid var(--line);border-radius:12px;margin-bottom:10px;overflow:hidden}
+.step > summary{display:flex;align-items:center;gap:10px;min-height:66px;padding:0 14px;cursor:pointer;list-style:none}
+.step > summary::-webkit-details-marker{display:none}
+.step .num{display:inline-grid;place-items:center;flex:none;width:30px;height:30px;border-radius:8px;background:var(--gold-soft);color:var(--gold);font-size:.86rem;font-weight:900}
+.step .tt{font-size:1.06rem;font-weight:800;letter-spacing:-.01em;min-width:0;line-height:1.25}
+.step .cnt{margin-inline-start:auto;display:inline-flex;align-items:baseline;gap:2px;flex:none;font-size:1.02rem;font-weight:900;color:var(--muted);font-variant-numeric:tabular-nums}
+.step .cnt b{font-size:1.5rem;font-weight:900;line-height:1;letter-spacing:-.02em}
+.step .arw{flex:none;margin-inline-start:4px;transition:transform .2s;color:#9AA0AB}
+.step[open] .arw{transform:rotate(180deg)}
+.step > .body{padding:2px 12px 12px;border-top:1px solid var(--line)}
+.step.need{border-color:var(--need-line);background:#FFFAFA}
+.step.need > summary .num{background:var(--need-soft);color:var(--need-deep)}
+.step.need .cnt{color:var(--need)} .step.need .cnt b{color:var(--need)}
 
-/* 객실 목록 */
-.rooms{display:grid;gap:10px}
-.room{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;border-inline-start:6px solid var(--ready)}
-.room.is-occupied{border-inline-start-color:var(--stay)}
-.room.is-cleaning{border-inline-start-color:var(--need)}
-.room.is-available{border-inline-start-color:var(--ok)}
-.room .top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-.room .no{font-size:1.45rem;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:.02em}
-.room .ty{font-size:.86rem;font-weight:700;color:var(--muted)}
-.chip{margin-inline-start:auto;font-size:.82rem;font-weight:800;border-radius:999px;padding:.3rem .7rem;white-space:nowrap}
-.chip.available{background:var(--ok-soft);color:var(--ok)}
-.chip.occupied{background:var(--stay-soft);color:var(--stay)}
-.chip.cleaning{background:var(--need-soft);color:var(--need)}
+/* 방 한 줄 */
+.rrow{display:grid;gap:10px;padding:12px 0;border-bottom:1px solid var(--line)}
+.rrow:last-child{border-bottom:0;padding-bottom:2px}
+.rtop{display:flex;align-items:center;gap:8px;min-width:0;flex-wrap:wrap}
+.rno{font-size:1.5rem;font-weight:900;font-variant-numeric:tabular-nums;letter-spacing:.01em;line-height:1.1}
+.rno small{font-size:.9rem;font-weight:800;color:var(--muted);margin-left:1px}
+.src{font-size:.8rem;font-weight:800;border-radius:999px;padding:.16rem .55rem;background:var(--book-soft);color:var(--book);border:1px solid var(--book-line);white-space:nowrap}
+.src.direct{background:var(--ok-soft);color:var(--ok);border-color:var(--ok-line)}
+.calltag{margin-inline-start:auto;font-size:.78rem;font-weight:900;color:#fff;background:var(--need);border-radius:999px;padding:.2rem .6rem;white-space:nowrap}
+.racts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.racts.one{grid-template-columns:1fr}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;width:100%;min-height:58px;border-radius:9px;font-size:1.06rem;font-weight:900;border:2px solid transparent;line-height:1.2;padding:.3rem .4rem;transition:filter .15s}
+.btn:active{filter:brightness(.94)}
+.btn.call{background:var(--call);color:#fff;font-size:1.08rem}
+.btn.clean{background:var(--ok);color:#fff}
+.btn.in{background:var(--book-soft);color:var(--book);border-color:var(--book-line)}
+.btn.out{background:var(--stay);color:#fff}
+.btn.test{background:#fff;color:var(--gold);border:2px dashed var(--gold);margin-top:12px;min-height:56px;font-size:1rem}
+.empty{padding:16px 4px;color:var(--muted);font-size:.98rem;text-align:center}
+.freelist{display:flex;flex-wrap:wrap;gap:8px;padding:12px 0 2px}
+.freelist span{font-size:1.22rem;font-weight:900;font-variant-numeric:tabular-nums;background:var(--ok-soft);border:1px solid var(--ok-line);color:var(--ok);border-radius:8px;padding:.42rem .75rem}
 
 /* 안내 */
-.note{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;margin-top:26px;font-size:.86rem;color:var(--muted);line-height:1.65}
+.note{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:15px;margin-top:20px;font-size:.86rem;color:var(--muted);line-height:1.65}
 .note b{color:var(--ink)}
-.note .links{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-.note .links a,.note .links button{border:1px solid var(--line);border-radius:8px;padding:.55rem .8rem;min-height:46px;display:inline-flex;align-items:center;font-weight:700;color:var(--ink);background:#fff}
-footer{margin-top:18px;text-align:center;font-size:.78rem;color:var(--muted)}
+footer{margin-top:16px;text-align:center;font-size:.78rem;color:var(--muted)}
 
-#toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(20px);background:#1A1F27;color:#fff;padding:.8rem 1.1rem;border-radius:8px;font-size:.95rem;font-weight:700;opacity:0;pointer-events:none;transition:.25s;z-index:50;max-width:92vw;text-align:center}
+#toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(20px);background:#161B22;color:#fff;padding:.85rem 1.1rem;border-radius:8px;font-size:.98rem;font-weight:800;opacity:0;pointer-events:none;transition:.25s;z-index:50;max-width:92vw;text-align:center;line-height:1.4}
 #toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
-@media(min-width:640px){ .rooms{grid-template-columns:1fr 1fr} .todo{grid-template-columns:1fr 1fr} }
+@media(min-width:640px){
+  .rrow{grid-template-columns:1fr auto;align-items:center;gap:14px}
+  .racts{min-width:330px}
+  .rtop{flex-wrap:nowrap}
+}
 </style>
 </head>
 <body>
@@ -107,34 +133,89 @@ footer{margin-top:18px;text-align:center;font-size:.78rem;color:var(--muted)}
 <header>
   <div class="wrap hin">
     <span class="logo"><b>DANJAM</b><i>23 관리자</i></span>
-    <span class="today"><span id="dow"></span><b id="dt">-</b></span>
     <a class="home" href="index.html">홈페이지</a>
   </div>
 </header>
 
 <main class="wrap">
-  <section class="sum" aria-label="오늘 요약">
-    <div class="tile need"><span class="k">청소 필요</span><span class="v" id="nClean">0</span></div>
-    <div class="tile stay"><span class="k">투숙 중</span><span class="v" id="nStay">0</span></div>
-    <div class="tile ok"><span class="k">판매 가능</span><span class="v" id="nFree">0</span></div>
+
+  <div class="tools">
+    <a href="clean.html">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 15h16M6 15v5M18 15v5M9 10l2-6 2 2 3-1 1 5"/></svg>
+      청소 이모님 화면
+    </a>
+    <button type="button" id="reset">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7M3 4v5h5"/></svg>
+      처음 상태로
+    </button>
+  </div>
+
+  <section class="sum" aria-label="한눈에 보기">
+    <div class="tile free"><span class="k">남은 방<br>(빈 방)</span><span class="v" id="nFree">0</span></div>
+    <div class="tile stay"><span class="k">예약 ·<br>입실 중</span><span class="v" id="nStay">0</span></div>
+    <div class="tile need"><span class="k">청소<br>필요</span><span class="v" id="nClean">0</span></div>
   </section>
 
-  <h2><span class="n" id="hClean">0</span> 지금 청소할 방</h2>
-  <p class="hint">청소를 마치면 초록색 <b>청소 완료</b> 버튼을 눌러 주세요. 바로 판매 가능으로 바뀝니다.</p>
-  <div class="todo" id="todo"></div>
+  <details class="phone" id="phoneBox">
+    <summary>
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 3h3l2 5-2 1a12 12 0 0 0 6 6l1-2 5 2v3a2 2 0 0 1-2 2A17 17 0 0 1 4 5a2 2 0 0 1 2-2z"/></svg>
+      청소 이모님 번호
+      <span class="st" id="phoneState">아직 없음</span>
+      <svg class="arw" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+    </summary>
+    <div class="body">
+      <div class="row">
+        <label class="sr" for="staffPhone">청소 이모님 번호</label>
+        <input id="staffPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="010-0000-0000" maxlength="20">
+        <button class="save" type="button" id="savePhone">저장</button>
+      </div>
+      <p class="hint">번호를 저장해 두면 [직원 호출]을 누를 때 이 번호로 청소 문자가 바로 뜹니다.</p>
+    </div>
+  </details>
 
-  <h2 class="plain"><span class="n">오늘</span> 입실 · 퇴실</h2>
-  <p class="hint" id="todayLine">-</p>
+  <details class="step" id="stepBook" data-step="book">
+    <summary>
+      <span class="num">1</span>
+      <span class="tt">예약 완료</span>
+      <span class="cnt"><b id="cBook">0</b>개</span>
+      <svg class="arw" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+    </summary>
+    <div class="body" id="bBook"></div>
+  </details>
 
-  <h2 class="plain"><span class="n" id="hRooms">0</span> 객실 전체</h2>
-  <div class="rooms" id="rooms"></div>
+  <details class="step" id="stepStay" data-step="stay">
+    <summary>
+      <span class="num">2</span>
+      <span class="tt">입실 완료 · 투숙 중</span>
+      <span class="cnt"><b id="cStay">0</b>개</span>
+      <svg class="arw" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+    </summary>
+    <div class="body" id="bStay"></div>
+  </details>
+
+  <details class="step need" id="stepClean" data-step="clean">
+    <summary>
+      <span class="num">3</span>
+      <span class="tt">청소 필요</span>
+      <span class="cnt"><b id="cClean">0</b>개</span>
+      <svg class="arw" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+    </summary>
+    <div class="body" id="bClean"></div>
+  </details>
+
+  <details class="step" id="stepFree" data-step="free">
+    <summary>
+      <span class="num">4</span>
+      <span class="tt">판매 중 · 빈 방</span>
+      <span class="cnt"><b id="cFree">0</b>개</span>
+      <svg class="arw" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+    </summary>
+    <div class="body" id="bFree"></div>
+  </details>
 
   <div class="note">
-    <b>지금은 시안 화면입니다.</b> 누른 상태는 이 기기(브라우저)에만 저장되고, 실제 예약 프로그램(벤디트)과는 아직 연결되지 않았습니다.
-    <div class="links">
-      <a href="index.html">손님 화면 보기</a>
-      <button type="button" id="reset">처음 상태로 되돌리기</button>
-    </div>
+    <b>지금은 시안 화면입니다.</b> 누른 상태는 이 기기(브라우저)에 저장되고, 실제 예약 프로그램(벤디트)과는 아직 연결되지 않았습니다.
+    [직원 호출]은 이모님 화면에 빨간불을 켜고, 저장한 번호로 문자 창을 함께 엽니다.
   </div>
 
   <footer>단잠 23 DANJAM 23 · 관리자 화면 · 2026</footer>
@@ -145,112 +226,261 @@ footer{margin-top:18px;text-align:center;font-size:.78rem;color:var(--muted)}
 <script>
 (function(){
   'use strict';
-  var KEY = 'dj_admin_v1';
 
-  /* 호실은 예시입니다. 실제 호실·객실 타입이 오면 이 목록만 고치면 됩니다. */
+  var KEY = 'danjam23_rooms_v1';        /* 사장님 화면 · 이모님 화면 공용 상태 */
+  var PHONE_KEY = 'danjam23_staff_phone_v1';
+  var CH_NAME = 'danjam23_sync';
+
+  /* 호실은 예시입니다. 실제 호실이 오면 이 목록만 고치면 됩니다. */
   var DEFAULT = {
     rooms: [
-      { no: '201', type: '트윈룸', state: 'available' },
-      { no: '202', type: '더블룸', state: 'cleaning' },
-      { no: '203', type: '싱글룸', state: 'available' },
-      { no: '204', type: '트윈룸', state: 'occupied' },
-      { no: '301', type: '더블룸', state: 'cleaning' },
-      { no: '302', type: '트윈룸', state: 'available' },
-      { no: '303', type: '싱글룸', state: 'occupied' },
-      { no: '304', type: '더블룸', state: 'available' }
-    ],
-    arrivals: ['201', '204', '302'],
-    departures: ['202', '301']
+      { no: '201', type: '트윈룸', state: 'booked',   source: '아고다' },
+      { no: '202', type: '더블룸', state: 'cleaning', source: '' },
+      { no: '203', type: '싱글룸', state: 'available', source: '' },
+      { no: '204', type: '트윈룸', state: 'occupied', source: '단잠23' },
+      { no: '301', type: '더블룸', state: 'cleaning', source: '' },
+      { no: '302', type: '트윈룸', state: 'available', source: '' },
+      { no: '303', type: '싱글룸', state: 'occupied', source: '부킹닷컴' },
+      { no: '304', type: '더블룸', state: 'available', source: '' }
+    ]
   };
+  var SOURCES = ['아고다', '단잠23', '부킹닷컴', '에어비앤비'];
 
-  var LABEL = { available: '판매 가능', occupied: '투숙 중', cleaning: '청소 필요' };
   var data = load();
+  var phone = loadPhone();
+  var opened = false;              /* 처음 한 번만 기본 단계를 펼친다 */
 
+  var ch = null;
+  try { ch = new BroadcastChannel(CH_NAME); } catch(e){ ch = null; }
+
+  function $(s){ return document.querySelector(s); }
+  function esc(v){ return String(v).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+
+  function clone(o){ return JSON.parse(JSON.stringify(o)); }
+
+  function normalise(d){
+    if (!d || !d.rooms || !d.rooms.length) return null;
+    d.rooms.forEach(function(r){
+      if (r.state !== 'available' && r.state !== 'booked' && r.state !== 'occupied' && r.state !== 'cleaning') r.state = 'available';
+      if (typeof r.callStaff !== 'boolean') r.callStaff = false;
+      if (typeof r.source !== 'string') r.source = '';
+    });
+    return d;
+  }
   function load(){
     try {
       var raw = localStorage.getItem(KEY);
-      if (raw){ var d = JSON.parse(raw); if (d && d.rooms && d.rooms.length) return d; }
+      var d = normalise(raw ? JSON.parse(raw) : null);
+      if (d) return d;
     } catch(e){}
-    return JSON.parse(JSON.stringify(DEFAULT));
+    return clone(DEFAULT);
   }
   function save(){
     try { localStorage.setItem(KEY, JSON.stringify(data)); } catch(e){}
   }
-  function $(s){ return document.querySelector(s); }
+  function loadPhone(){
+    try { return localStorage.getItem(PHONE_KEY) || ''; } catch(e){ return ''; }
+  }
+  function savePhone(v){
+    phone = v;
+    try { localStorage.setItem(PHONE_KEY, v); } catch(e){}
+  }
   function toast(msg){
     var el = $('#toast');
     el.textContent = msg; el.classList.add('on');
-    clearTimeout(toast.t); toast.t = setTimeout(function(){ el.classList.remove('on'); }, 2200);
+    clearTimeout(toast.t);
+    toast.t = setTimeout(function(){ el.classList.remove('on'); }, 2600);
+  }
+  function hhmm(ts){
+    if (!ts) return '';
+    var d = new Date(ts);
+    var p = function(n){ return (n < 10 ? '0' : '') + n; };
+    return p(d.getHours()) + ':' + p(d.getMinutes());
   }
 
-  function setState(no, state){
+  /* 상태 바꾸고 → 저장 → 다른 창에 알림 */
+  function update(no, patch, msg){
     for (var i = 0; i < data.rooms.length; i++){
-      if (data.rooms[i].no === no){ data.rooms[i].state = state; break; }
+      if (data.rooms[i].no === no){
+        for (var k in patch) data.rooms[i][k] = patch[k];
+        break;
+      }
     }
-    save(); render();
-    toast(no + '호 · ' + LABEL[state]);
+    commit(msg);
   }
+  function commit(msg){
+    data.updatedAt = Date.now();
+    save();
+    broadcast();
+    render();
+    if (msg) toast(msg);
+  }
+  function broadcast(){
+    if (!ch) return;
+    try { ch.postMessage({ type: 'state', rooms: data.rooms, at: Date.now() }); } catch(e){}
+  }
+
+  /* 이모님 화면에서 [청소 완료]를 누른 경우 등, 다른 창의 변경을 받는다 */
+  function syncIncoming(payload){
+    if (payload && payload.rooms && payload.rooms.length){
+      data = normalise({ rooms: payload.rooms }) || data;
+      save();
+      render();
+      return;
+    }
+    var fresh = load();
+    data = fresh;
+    render();
+  }
+  if (ch){
+    ch.addEventListener('message', function(ev){
+      if (!ev.data || ev.data.type !== 'state') return;
+      syncIncoming(ev.data);
+      toast('이모님 화면에서 청소 완료가 들어왔습니다');
+    });
+  }
+  window.addEventListener('storage', function(e){
+    if (e.key === KEY) syncIncoming(null);
+  });
+
+  /* ---------- 직원 호출 : 화면 알림 + 문자 창 동시에 ---------- */
+  function callStaff(no){
+    update(no, { callStaff: true, calledAt: Date.now() }, no + '호 · 직원 호출을 보냈습니다');
+    var body = '단잠 23: ' + no + '호 청소 필요합니다';
+    var digits = String(phone || '').replace(/[^0-9+]/g, '');
+    if (!digits){
+      toast('청소 이모님 번호를 먼저 저장해 주세요');
+      var box = $('#phoneBox');
+      box.open = true;
+      $('#staffPhone').focus();
+      return;
+    }
+    var url = 'sms:' + digits + '?body=' + encodeURIComponent(body);
+    window.__djSms = url;
+    try { window.location.href = url; } catch(e){}
+  }
+
+  /* ---------- 그리기 ---------- */
+  function srcBadge(src){
+    if (!src) return '';
+    var direct = (src === '단잠23' || src === '직접');
+    return '<span class="src' + (direct ? ' direct' : '') + '">' + esc(src) + '</span>';
+  }
+  function emptyLine(txt){ return '<p class="empty">' + txt + '</p>'; }
 
   function render(){
-    var clean = data.rooms.filter(function(r){ return r.state === 'cleaning'; });
-    var stay = data.rooms.filter(function(r){ return r.state === 'occupied'; });
-    var free = data.rooms.filter(function(r){ return r.state === 'available'; });
+    var clean = [], stay = [], book = [], free = [];
+    data.rooms.forEach(function(r){
+      if (r.state === 'cleaning') clean.push(r);
+      else if (r.state === 'occupied') stay.push(r);
+      else if (r.state === 'booked') book.push(r);
+      else free.push(r);
+    });
 
-    $('#nClean').textContent = clean.length;
-    $('#hClean').textContent = clean.length;
-    $('#nStay').textContent = stay.length;
-    $('#nFree').textContent = free.length;
-    $('#hRooms').textContent = data.rooms.length;
+    $('#nFree').innerHTML = free.length + '<span class="u">개</span>';
+    $('#nStay').innerHTML = (book.length + stay.length) + '<span class="u">개</span>';
+    $('#nClean').innerHTML = clean.length + '<span class="u">개</span>';
+    $('#cBook').textContent = book.length;
+    $('#cStay').textContent = stay.length;
+    $('#cClean').textContent = clean.length;
+    $('#cFree').textContent = free.length;
 
-    /* 청소할 방 */
-    var todo = $('#todo');
-    if (!clean.length){
-      todo.innerHTML = '<div class="empty">지금 청소할 방이 없습니다. 모두 정리되었습니다.</div>';
-    } else {
-      todo.innerHTML = clean.map(function(r){
-        return '<div class="row">' +
-          '<div class="top"><span class="no">' + r.no + '</span><span class="ty">' + r.type + '</span><span class="why">청소 필요</span></div>' +
-          '<button class="btn clean" type="button" data-clean="' + r.no + '">청소 완료</button>' +
-        '</div>';
-      }).join('');
+    /* 1단계 예약 완료 */
+    $('#bBook').innerHTML = book.length ? book.map(function(r){
+      return '<div class="rrow">' +
+        '<div class="rtop"><span class="rno">' + esc(r.no) + '<small>호</small></span>' + srcBadge(r.source) + '</div>' +
+        '<div class="racts one"><button class="btn in" type="button" data-in="' + esc(r.no) + '">입실 완료</button></div>' +
+      '</div>';
+    }).join('') : emptyLine('예약 완료된 방이 없습니다.');
+
+    /* 2단계 투숙 중 */
+    $('#bStay').innerHTML = stay.length ? stay.map(function(r){
+      return '<div class="rrow">' +
+        '<div class="rtop"><span class="rno">' + esc(r.no) + '<small>호</small></span>' + srcBadge(r.source) + '</div>' +
+        '<div class="racts one"><button class="btn out" type="button" data-out="' + esc(r.no) + '">퇴실 완료</button></div>' +
+      '</div>';
+    }).join('') : emptyLine('지금 투숙 중인 방이 없습니다.');
+
+    /* 3단계 청소 필요 : 왼쪽 빨간 직원 호출 / 오른쪽 청소 완료 */
+    $('#bClean').innerHTML = clean.length ? clean.map(function(r){
+      var tag = r.callStaff ? '<span class="calltag">호출함 ' + hhmm(r.calledAt) + '</span>' : '';
+      return '<div class="rrow">' +
+        '<div class="rtop"><span class="rno">' + esc(r.no) + '<small>호</small></span>' + tag + '</div>' +
+        '<div class="racts">' +
+          '<button class="btn call" type="button" data-call="' + esc(r.no) + '">직원 호출</button>' +
+          '<button class="btn clean" type="button" data-clean="' + esc(r.no) + '">청소 완료</button>' +
+        '</div>' +
+      '</div>';
+    }).join('') : emptyLine('지금 청소할 방이 없습니다. 모두 정리되었습니다.');
+
+    /* 4단계 판매 중 */
+    $('#bFree').innerHTML = (free.length ?
+        '<div class="freelist">' + free.map(function(r){ return '<span>' + esc(r.no) + '</span>'; }).join('') + '</div>'
+        : emptyLine('지금은 빈 방이 없습니다.')) +
+      '<button class="btn test" type="button" id="testBook">새 예약 테스트 (빈 방 하나 예약 완료로)</button>';
+
+    /* 처음 한 번만 : 청소 필요 → 예약 완료 순서로 하나 펼침 */
+    if (!opened){
+      opened = true;
+      if (clean.length) $('#stepClean').open = true;
+      else if (book.length) $('#stepBook').open = true;
     }
-
-    /* 오늘 입실·퇴실 */
-    var arrText = data.arrivals.length ? data.arrivals.join(' · ') + '호' : '없음';
-    var depText = data.departures.length ? data.departures.join(' · ') + '호' : '없음';
-    $('#todayLine').innerHTML = '입실 <b>' + arrText + '</b> &nbsp;|&nbsp; 퇴실 <b>' + depText + '</b>';
-
-    /* 객실 전체 */
-    $('#rooms').innerHTML = data.rooms.map(function(r){
-      var btn = '';
-      if (r.state === 'cleaning') btn = '<button class="btn clean" type="button" data-clean="' + r.no + '">청소 완료</button>';
-      else if (r.state === 'occupied') btn = '<button class="btn out" type="button" data-out="' + r.no + '">퇴실 처리</button>';
-      else btn = '<button class="btn in" type="button" data-in="' + r.no + '">입실 처리</button>';
-      return '<div class="room is-' + r.state + '">' +
-        '<div class="top"><span class="no">' + r.no + '</span><span class="ty">' + r.type + '</span>' +
-        '<span class="chip ' + r.state + '">' + LABEL[r.state] + '</span></div>' + btn + '</div>';
-    }).join('');
   }
 
+  /* ---------- 누르기 ---------- */
   document.addEventListener('click', function(e){
     var t = e.target.closest('button');
     if (!t) return;
-    if (t.dataset.clean) setState(t.dataset.clean, 'available');
-    else if (t.dataset.out) setState(t.dataset.out, 'cleaning');
-    else if (t.dataset.in) setState(t.dataset.in, 'occupied');
+
+    if (t.dataset.in) update(t.dataset.in, { state: 'occupied' }, t.dataset.in + '호 · 입실 완료');
+    else if (t.dataset.out) update(t.dataset.out, { state: 'cleaning', callStaff: false, calledAt: null, source: '' }, t.dataset.out + '호 · 퇴실 완료, 청소 필요');
+    else if (t.dataset.clean) update(t.dataset.clean, { state: 'available', callStaff: false, calledAt: null, source: '' }, t.dataset.clean + '호 · 청소 완료, 판매 중');
+    else if (t.dataset.call) callStaff(t.dataset.call);
+    else if (t.id === 'testBook'){
+      var free = data.rooms.filter(function(r){ return r.state === 'available'; });
+      if (!free.length){ toast('빈 방이 없어 테스트할 수 없습니다'); return; }
+      var pick = free[Math.floor(Math.random() * free.length)];
+      var src = SOURCES[Math.floor(Math.random() * SOURCES.length)];
+      update(pick.no, { state: 'booked', source: src }, pick.no + '호 · ' + src + ' 예약이 들어왔습니다');
+      $('#stepBook').open = true;
+    }
+    else if (t.id === 'savePhone'){
+      var v = $('#staffPhone').value.replace(/[^0-9+]/g, '');
+      if (v.length < 8){ toast('번호를 다시 확인해 주세요'); $('#staffPhone').focus(); return; }
+      savePhone(v);
+      drawPhone();
+      $('#phoneBox').open = false;
+      toast('이모님 번호를 저장했습니다');
+    }
     else if (t.id === 'reset'){
       if (confirm('오늘 누른 상태를 모두 처음으로 되돌릴까요?')){
-        data = JSON.parse(JSON.stringify(DEFAULT)); save(); render(); toast('처음 상태로 되돌렸습니다');
+        data = clone(DEFAULT);
+        commit('처음 상태로 되돌렸습니다');
+        opened = true;
       }
     }
   });
 
-  var now = new Date();
-  var days = ['일','월','화','수','목','금','토'];
-  $('#dt').textContent = (now.getMonth() + 1) + '월 ' + now.getDate() + '일';
-  $('#dow').textContent = days[now.getDay()] + '요일';
+  function drawPhone(){
+    var st = $('#phoneState');
+    var input = $('#staffPhone');
+    if (phone){
+      st.textContent = phone.replace(/^(\d{3})(\d{3,4})(\d{4})$/, '$1-$2-$3');
+      st.className = 'st ok';
+      if (!input.value) input.value = phone;
+    } else {
+      st.textContent = '아직 없음';
+      st.className = 'st';
+    }
+  }
 
+  /* 시작 */
+  if (typeof BroadcastChannel === 'undefined'){ /* 아주 오래된 브라우저는 저장된 값만 사용 */ }
+  drawPhone();
+  try { if (!localStorage.getItem(KEY)) save(); } catch(e){}   /* 이모님 화면도 같은 첫 상태를 보게 저장해 둔다 */
   render();
+  /* 관리자 화면이 열릴 때 이모님 화면 쪽 상태를 한 번 맞춘다 */
+  broadcast();
 })();
 </script>
 </body>
