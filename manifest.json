@@ -1,0 +1,25 @@
+{
+  "name": "단잠 23 DANJAM 23",
+  "short_name": "단잠 23",
+  "description": "명동 충무로역 5번 출구 도보 2분, 루프탑 남산타워 뷰 호스텔 단잠 23 공식 앱",
+  "lang": "ko",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "portrait-primary",
+  "background_color": "#0A0E18",
+  "theme_color": "#0A0E18",
+  "categories": ["travel", "lodging"],
+  "icons": [
+    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "객실 보기", "url": "./#rooms" },
+    { "name": "오시는 길", "url": "./#location" }
+  ]
+}

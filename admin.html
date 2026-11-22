@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>단잠 23 · 관리자 (사장님·직원용)</title>
+<meta name="theme-color" content="#F5F2EA">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="icons/icon-192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<style>
+:root{
+  --bg:#F5F2EA;--card:#FFFFFF;--ink:#1A1F27;--muted:#5C6370;--line:#E3DCCE;
+  --gold:#8F6A1C;--gold-soft:#F3E9D2;
+  --ok:#2E7D4F;--ok-soft:#E6F2EA;
+  --stay:#2A5D9E;--stay-soft:#E7EEF8;
+  --need:#B93B2B;--need-soft:#FBEAE7;
+  --ready:#6B6252;--ready-soft:#EFEBE1;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg);color:var(--ink);
+  font:400 17px/1.6 -apple-system,'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',system-ui,sans-serif;
+  padding-bottom:calc(28px + env(safe-area-inset-bottom));
+  -webkit-font-smoothing:antialiased;
+}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px;border-radius:4px}
+.wrap{max-width:760px;margin-inline:auto;padding-inline:16px}
+
+/* 헤더 */
+header{position:sticky;top:0;z-index:20;background:rgba(245,242,234,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top)}
+.hin{display:flex;align-items:center;gap:10px;min-height:62px}
+.logo{display:flex;align-items:baseline;gap:6px;margin-inline-end:auto}
+.logo b{font-size:1.24rem;font-weight:800;letter-spacing:.16em}
+.logo i{font-style:normal;font-size:.68rem;font-weight:800;letter-spacing:.1em;color:#FFF9EC;background:var(--gold);padding:2px 6px;border-radius:3px}
+.today{font-size:.86rem;font-weight:700;color:var(--muted)}
+.today b{display:block;color:var(--ink);font-size:1rem}
+.home{font-size:.86rem;font-weight:700;color:var(--gold);border:1px solid var(--gold);border-radius:6px;padding:.5rem .7rem;min-height:44px;display:inline-flex;align-items:center}
+@media(max-width:420px){.today{display:none}}
+
+main{padding-top:18px}
+
+/* 요약 */
+.sum{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:22px}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 12px;text-align:center;box-shadow:0 2px 0 rgba(0,0,0,.02)}
+.tile .k{display:block;font-size:.82rem;font-weight:800;letter-spacing:.02em;color:var(--muted);margin-bottom:4px}
+.tile .v{display:block;font-size:2rem;font-weight:800;line-height:1.1;font-variant-numeric:tabular-nums}
+.tile.need .v{color:var(--need)} .tile.need{border-color:#EBC3BC;background:var(--need-soft)}
+.tile.stay .v{color:var(--stay)}
+.tile.ok .v{color:var(--ok)}
+
+/* 섹션 제목 */
+h2{display:flex;align-items:center;gap:8px;font-size:1.05rem;font-weight:800;margin:26px 0 10px}
+h2 span.n{display:inline-grid;place-items:center;min-width:26px;height:26px;padding:0 7px;border-radius:999px;background:var(--need);color:#fff;font-size:.82rem}
+h2.plain span.n{background:var(--gold-soft);color:var(--gold)}
+.hint{font-size:.85rem;color:var(--muted);margin:-4px 0 12px}
+
+/* 청소 카드 */
+.todo{display:grid;gap:10px}
+.todo .row{background:var(--card);border:1px solid #EBC3BC;border-inline-start:6px solid var(--need);border-radius:10px;padding:14px}
+.todo .top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.todo .no{font-size:1.5rem;font-weight:800;font-variant-numeric:tabular-nums}
+.todo .ty{font-size:.9rem;font-weight:700;color:var(--muted);background:var(--ready-soft);border-radius:999px;padding:.18rem .6rem}
+.todo .why{margin-inline-start:auto;font-size:.85rem;font-weight:800;color:var(--need)}
+.empty{background:var(--card);border:1px dashed var(--line);border-radius:10px;padding:18px;text-align:center;color:var(--muted);font-size:.95rem}
+
+/* 버튼 */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:56px;border-radius:8px;font-size:1.05rem;font-weight:800;border:1px solid transparent;transition:filter .15s,background-color .15s}
+.btn:active{filter:brightness(.95)}
+.btn.clean{background:var(--ok);color:#fff;font-size:1.12rem}
+.btn.out{background:var(--stay-soft);color:var(--stay);border-color:#C3D5EC}
+.btn.in{background:var(--ready-soft);color:var(--ready);border-color:#DCD5C6}
+.btn.row2{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:auto}
+.btn.row2 > button{width:100%}
+
+/* 객실 목록 */
+.rooms{display:grid;gap:10px}
+.room{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;border-inline-start:6px solid var(--ready)}
+.room.is-occupied{border-inline-start-color:var(--stay)}
+.room.is-cleaning{border-inline-start-color:var(--need)}
+.room.is-available{border-inline-start-color:var(--ok)}
+.room .top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.room .no{font-size:1.45rem;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.room .ty{font-size:.86rem;font-weight:700;color:var(--muted)}
+.chip{margin-inline-start:auto;font-size:.82rem;font-weight:800;border-radius:999px;padding:.3rem .7rem;white-space:nowrap}
+.chip.available{background:var(--ok-soft);color:var(--ok)}
+.chip.occupied{background:var(--stay-soft);color:var(--stay)}
+.chip.cleaning{background:var(--need-soft);color:var(--need)}
+
+/* 안내 */
+.note{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;margin-top:26px;font-size:.86rem;color:var(--muted);line-height:1.65}
+.note b{color:var(--ink)}
+.note .links{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.note .links a,.note .links button{border:1px solid var(--line);border-radius:8px;padding:.55rem .8rem;min-height:46px;display:inline-flex;align-items:center;font-weight:700;color:var(--ink);background:#fff}
+footer{margin-top:18px;text-align:center;font-size:.78rem;color:var(--muted)}
+
+#toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(20px);background:#1A1F27;color:#fff;padding:.8rem 1.1rem;border-radius:8px;font-size:.95rem;font-weight:700;opacity:0;pointer-events:none;transition:.25s;z-index:50;max-width:92vw;text-align:center}
+#toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+@media(min-width:640px){ .rooms{grid-template-columns:1fr 1fr} .todo{grid-template-columns:1fr 1fr} }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap hin">
+    <span class="logo"><b>DANJAM</b><i>23 관리자</i></span>
+    <span class="today"><span id="dow"></span><b id="dt">-</b></span>
+    <a class="home" href="index.html">홈페이지</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="sum" aria-label="오늘 요약">
+    <div class="tile need"><span class="k">청소 필요</span><span class="v" id="nClean">0</span></div>
+    <div class="tile stay"><span class="k">투숙 중</span><span class="v" id="nStay">0</span></div>
+    <div class="tile ok"><span class="k">판매 가능</span><span class="v" id="nFree">0</span></div>
+  </section>
+
+  <h2><span class="n" id="hClean">0</span> 지금 청소할 방</h2>
+  <p class="hint">청소를 마치면 초록색 <b>청소 완료</b> 버튼을 눌러 주세요. 바로 판매 가능으로 바뀝니다.</p>
+  <div class="todo" id="todo"></div>
+
+  <h2 class="plain"><span class="n">오늘</span> 입실 · 퇴실</h2>
+  <p class="hint" id="todayLine">-</p>
+
+  <h2 class="plain"><span class="n" id="hRooms">0</span> 객실 전체</h2>
+  <div class="rooms" id="rooms"></div>
+
+  <div class="note">
+    <b>지금은 시안 화면입니다.</b> 누른 상태는 이 기기(브라우저)에만 저장되고, 실제 예약 프로그램(벤디트)과는 아직 연결되지 않았습니다.
+    <div class="links">
+      <a href="index.html">손님 화면 보기</a>
+      <button type="button" id="reset">처음 상태로 되돌리기</button>
+    </div>
+  </div>
+
+  <footer>단잠 23 DANJAM 23 · 관리자 화면 · 2026</footer>
+</main>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  'use strict';
+  var KEY = 'dj_admin_v1';
+
+  /* 호실은 예시입니다. 실제 호실·객실 타입이 오면 이 목록만 고치면 됩니다. */
+  var DEFAULT = {
+    rooms: [
+      { no: '201', type: '트윈룸', state: 'available' },
+      { no: '202', type: '더블룸', state: 'cleaning' },
+      { no: '203', type: '싱글룸', state: 'available' },
+      { no: '204', type: '트윈룸', state: 'occupied' },
+      { no: '301', type: '더블룸', state: 'cleaning' },
+      { no: '302', type: '트윈룸', state: 'available' },
+      { no: '303', type: '싱글룸', state: 'occupied' },
+      { no: '304', type: '더블룸', state: 'available' }
+    ],
+    arrivals: ['201', '204', '302'],
+    departures: ['202', '301']
+  };
+
+  var LABEL = { available: '판매 가능', occupied: '투숙 중', cleaning: '청소 필요' };
+  var data = load();
+
+  function load(){
+    try {
+      var raw = localStorage.getItem(KEY);
+      if (raw){ var d = JSON.parse(raw); if (d && d.rooms && d.rooms.length) return d; }
+    } catch(e){}
+    return JSON.parse(JSON.stringify(DEFAULT));
+  }
+  function save(){
+    try { localStorage.setItem(KEY, JSON.stringify(data)); } catch(e){}
+  }
+  function $(s){ return document.querySelector(s); }
+  function toast(msg){
+    var el = $('#toast');
+    el.textContent = msg; el.classList.add('on');
+    clearTimeout(toast.t); toast.t = setTimeout(function(){ el.classList.remove('on'); }, 2200);
+  }
+
+  function setState(no, state){
+    for (var i = 0; i < data.rooms.length; i++){
+      if (data.rooms[i].no === no){ data.rooms[i].state = state; break; }
+    }
+    save(); render();
+    toast(no + '호 · ' + LABEL[state]);
+  }
+
+  function render(){
+    var clean = data.rooms.filter(function(r){ return r.state === 'cleaning'; });
+    var stay = data.rooms.filter(function(r){ return r.state === 'occupied'; });
+    var free = data.rooms.filter(function(r){ return r.state === 'available'; });
+
+    $('#nClean').textContent = clean.length;
+    $('#hClean').textContent = clean.length;
+    $('#nStay').textContent = stay.length;
+    $('#nFree').textContent = free.length;
+    $('#hRooms').textContent = data.rooms.length;
+
+    /* 청소할 방 */
+    var todo = $('#todo');
+    if (!clean.length){
+      todo.innerHTML = '<div class="empty">지금 청소할 방이 없습니다. 모두 정리되었습니다.</div>';
+    } else {
+      todo.innerHTML = clean.map(function(r){
+        return '<div class="row">' +
+          '<div class="top"><span class="no">' + r.no + '</span><span class="ty">' + r.type + '</span><span class="why">청소 필요</span></div>' +
+          '<button class="btn clean" type="button" data-clean="' + r.no + '">청소 완료</button>' +
+        '</div>';
+      }).join('');
+    }
+
+    /* 오늘 입실·퇴실 */
+    var arrText = data.arrivals.length ? data.arrivals.join(' · ') + '호' : '없음';
+    var depText = data.departures.length ? data.departures.join(' · ') + '호' : '없음';
+    $('#todayLine').innerHTML = '입실 <b>' + arrText + '</b> &nbsp;|&nbsp; 퇴실 <b>' + depText + '</b>';
+
+    /* 객실 전체 */
+    $('#rooms').innerHTML = data.rooms.map(function(r){
+      var btn = '';
+      if (r.state === 'cleaning') btn = '<button class="btn clean" type="button" data-clean="' + r.no + '">청소 완료</button>';
+      else if (r.state === 'occupied') btn = '<button class="btn out" type="button" data-out="' + r.no + '">퇴실 처리</button>';
+      else btn = '<button class="btn in" type="button" data-in="' + r.no + '">입실 처리</button>';
+      return '<div class="room is-' + r.state + '">' +
+        '<div class="top"><span class="no">' + r.no + '</span><span class="ty">' + r.type + '</span>' +
+        '<span class="chip ' + r.state + '">' + LABEL[r.state] + '</span></div>' + btn + '</div>';
+    }).join('');
+  }
+
+  document.addEventListener('click', function(e){
+    var t = e.target.closest('button');
+    if (!t) return;
+    if (t.dataset.clean) setState(t.dataset.clean, 'available');
+    else if (t.dataset.out) setState(t.dataset.out, 'cleaning');
+    else if (t.dataset.in) setState(t.dataset.in, 'occupied');
+    else if (t.id === 'reset'){
+      if (confirm('오늘 누른 상태를 모두 처음으로 되돌릴까요?')){
+        data = JSON.parse(JSON.stringify(DEFAULT)); save(); render(); toast('처음 상태로 되돌렸습니다');
+      }
+    }
+  });
+
+  var now = new Date();
+  var days = ['일','월','화','수','목','금','토'];
+  $('#dt').textContent = (now.getMonth() + 1) + '월 ' + now.getDate() + '일';
+  $('#dow').textContent = days[now.getDay()] + '요일';
+
+  render();
+})();
+</script>
+</body>
+</html>
