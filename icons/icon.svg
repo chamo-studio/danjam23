@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="DANJAM 23">
+  <rect width="512" height="512" fill="#0A0E18"/>
+  <rect x="36" y="36" width="440" height="440" rx="16" fill="none" stroke="#C9A45C" stroke-width="6"/>
+  <rect x="58" y="58" width="396" height="396" rx="10" fill="none" stroke="#C9A45C" stroke-opacity=".45" stroke-width="2"/>
+  <text x="256" y="288" text-anchor="middle" font-family="Cormorant Garamond, Georgia, 'Times New Roman', serif" font-size="226" font-weight="600" fill="#C9A45C">23</text>
+  <circle cx="256" cy="336" r="7" fill="#FF8A5C"/>
+  <text x="256" y="392" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="38" font-weight="700" letter-spacing="12" fill="#F2ECDF">DANJAM</text>
+</svg>
