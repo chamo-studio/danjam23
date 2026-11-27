@@ -360,6 +360,7 @@ html[data-theme="dark"] .st{background:rgba(166,146,255,.16);color:#C7BBFF}
   .sheet{border-radius:24px 24px 0 0;max-height:94vh}
   .sheet-h{padding:20px 20px 4px}
   .bk{grid-template-columns:1fr;padding:12px 20px 24px}
+  .two-stack{grid-template-columns:1fr}
   .sum{position:static}
   .priv{padding:8px 20px 24px}
 }
@@ -730,7 +731,7 @@ html[data-theme="dark"] .st{background:rgba(166,146,255,.16);color:#C7BBFF}
           <label data-r="double"><input type="radio" name="room" value="double"><img src="images/double-bed.jpg" alt=""><span class="n" data-i18n="double">더블룸</span><span class="p" data-price="170000"></span></label>
           <label data-r="single"><input type="radio" name="room" value="single"><img src="images/single-room.jpg" alt=""><span class="n" data-i18n="single">싱글룸</span><span class="p" data-price="170000"></span></label>
         </div>
-        <div class="two">
+        <div class="two two-stack">
           <div class="fld"><label for="nm" data-i18n="name">이름</label><input id="nm" autocomplete="name" required></div>
           <div class="fld"><label for="ph" data-i18n="phone">연락처</label>
             <div class="telrow"><select id="cc" autocomplete="tel-country-code" aria-label="국가번호"></select><input id="ph" type="tel" autocomplete="tel-national" inputmode="tel" required></div>
