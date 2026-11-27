@@ -445,7 +445,7 @@ html[data-theme="dark"] .st{background:rgba(166,146,255,.16);color:#C7BBFF}
   <a class="dl" href="#location" data-i18n="nav_loc">오시는 길</a>
   <a class="dl" href="#faq" data-i18n="nav_faq">FAQ</a>
   <div class="row">
-    <select class="sel" id="langSel2" aria-label="Language"><option value="ko">한국어</option><option value="en">English</option><option value="ja">日本語</option><option value="zh">中文</option></select>
+    <select class="sel" id="langSel2" aria-label="Language"><option value="ko">한국어</option><option value="en">English</option><option value="ja">日本語</option><option value="zh">中文(简体)</option><option value="zh-TW">繁體中文</option><option value="th">ภาษาไทย</option><option value="vi">Tiếng Việt</option><option value="id">Bahasa Indonesia</option><option value="ms">Bahasa Melayu</option><option value="tl">Filipino</option><option value="es">Español</option><option value="fr">Français</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="pt">Português</option><option value="ru">Русский</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="tr">Türkçe</option><option value="nl">Nederlands</option></select>
     <select class="sel" id="curSel2" aria-label="Currency"><option value="KRW">₩ KRW</option><option value="USD">$ USD</option><option value="JPY">¥ JPY</option><option value="EUR">€ EUR</option><option value="CNY">¥ CNY</option><option value="GBP">£ GBP</option><option value="THB">฿ THB</option><option value="SGD">S$ SGD</option></select>
   </div>
   <button class="btn ghost" style="min-height:52px" data-theme-toggle><span data-i18n="theme">낮 / 밤 전환</span></button>
@@ -1564,6 +1564,29 @@ html[data-theme="dark"] .st{background:rgba(166,146,255,.16);color:#C7BBFF}
   tabA.onclick = function(){ switchTab('admin'); };
   tabC.onclick = function(){ switchTab('clean'); };
   window.addEventListener('storage', function(e){ if(e.key===KEY){ rooms = loadRooms(); render(); } });
+})();
+</script>
+
+<script>
+/* PWA · 캐시 자동 갱신
+   sw.js 의 VERSION(danjam23-v9)이 바뀌면 옛 캐시(v3~v8)는 activate 단계에서 지워지고,
+   새 index.html·이미지를 받아옵니다. 예전 캐시에 갇힌 폰 브라우저·홈화면 앱은
+   새 워커가 제어를 넘겨받는 순간 한 번만 새로고침해 최신 화면으로 바꿉니다. */
+(function(){
+  if(!('serviceWorker' in navigator)) return;
+  var KEY='dj_sw_refresh';
+  var hadController=!!navigator.serviceWorker.controller;
+  navigator.serviceWorker.addEventListener('controllerchange',function(){
+    if(!hadController) return;            /* 첫 설치 때는 새로고침하지 않음 */
+    try{ if(sessionStorage.getItem(KEY)==='1') return; sessionStorage.setItem(KEY,'1'); }catch(e){ return; }
+    location.reload();
+  });
+  window.addEventListener('load',function(){
+    navigator.serviceWorker.register('/sw.js',{scope:'/',updateViaCache:'none'}).then(function(reg){
+      if(reg.waiting) reg.waiting.postMessage({type:'SKIP_WAITING'});
+      reg.update().catch(function(){});     /* 다음 방문을 기다리지 않고 즉시 새 버전 확인 */
+    }).catch(function(){});
+  });
 })();
 </script>
 
