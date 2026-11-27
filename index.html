@@ -1186,6 +1186,18 @@ html[data-theme="dark"] .st{background:rgba(166,146,255,.16);color:#C7BBFF}
     pv:"<h4>1. 收集项目</h4><p>姓名、电话、邮箱、住宿日期、人数、备注</p><h4>2. 目的</h4><p>确认预订与客户服务</p><h4>3. 保存期限</h4><p>目的达成后立即销毁（法律另有规定除外）。</p><h4>4. 拒绝权</h4><p>您可拒绝同意，但将无法受理预订。</p><h4>5. 联系</h4><p>DANJAM 23（+82-2-2088-5843）</p>"}
   };
 
+  /* 결제 리다이렉트 복귀 안내 문구 */
+  I.ko.pay_ok="결제가 완료되었습니다. 예약 확인 후 안내드리겠습니다.";
+  I.ko.pay_fail="결제가 완료되지 않았습니다.";
+  I.ko.pay_unknown="결제 결과를 확인하지 못했습니다. 예약 여부는 호스텔로 문의해 주세요.";
+  I.en.pay_ok="Payment received. We will confirm your booking shortly.";
+  I.en.pay_fail="The payment was not completed.";
+  I.en.pay_unknown="We could not confirm the payment result. Please contact the hostel about your booking.";
+  I.ja.pay_ok="お支払いが完了しました。ご予約内容を確認のうえご連絡します。";
+  I.ja.pay_fail="お支払いは完了していません。";
+  I.zh.pay_ok="支付已完成。我们将尽快确认您的预订并与您联系。";
+  I.zh.pay_fail="支付未完成。";
+
   var lang='ko', cur='KRW';
   function t(k){return (I[lang]&&I[lang][k])||(I.en&&I.en[k])||I.ko[k]||''}
   function $(s,r){return (r||document).querySelector(s)}
@@ -1267,16 +1279,85 @@ html[data-theme="dark"] .st{background:rgba(166,146,255,.16);color:#C7BBFF}
     setTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark',true)})});
   setInterval(function(){if(!store('dj_theme'))setTheme(autoTheme(),false)},600000);
 
+  /* ── 폰 뒤로 가기 = 직전 화면 닫기 (히스토리 연동) ────────────────
+     겹쳐 열리는 화면(드로어·모달·사진 크게 보기)마다 히스토리 항목을 두되,
+     항목은 센티널 1개를 재사용한다. 뒤로 가기 1번 = 가장 위 화면 1개 닫기.
+     마지막 화면까지 닫히면 그 다음 뒤로 가기에서만 사이트를 벗어난다. */
+  var LAYERS=[], djArmed=false, djSelfBack=0, djBackTimer=null;
+  function djIndex(el){for(var i=LAYERS.length-1;i>=0;i--)if(LAYERS[i].el===el)return i;return -1}
+  function djArm(){if(djArmed)return;try{history.pushState({djSentinel:1},'')}catch(e){}djArmed=true}
+  function djDisarm(){if(!djArmed)return;djArmed=false;djSelfBack++;try{history.back()}catch(e){djSelfBack--}}
+  function djScheduleDisarm(){
+    if(djBackTimer)clearTimeout(djBackTimer);
+    djBackTimer=setTimeout(function(){djBackTimer=null;if(!LAYERS.length)djDisarm()},0);
+  }
+  function djOpen(el,closer){
+    var i=djIndex(el);
+    if(i>=0){LAYERS.length=i+1;return}
+    LAYERS.push({el:el,closer:closer});
+    if(djBackTimer){clearTimeout(djBackTimer);djBackTimer=null}
+    djArm();
+  }
+  function djClose(el){
+    var i=djIndex(el);
+    if(i<0)return false;
+    LAYERS.length=i;
+    djScheduleDisarm();
+    return true;
+  }
+  /* 드로어의 섹션 링크: 항목을 링크 주소로 바꿔치기해 뒤로 가기 1번이 곧 메인이 되게 한다 */
+  function djReplacePin(url){
+    if(djBackTimer){clearTimeout(djBackTimer);djBackTimer=null}
+    djArmed=false;
+    try{history.replaceState(null,'',url||'')}catch(e){try{history.replaceState(null,'')}catch(_){}}
+  }
+  window.addEventListener('popstate',function(){
+    if(djSelfBack>0){djSelfBack--;djArmed=false;return}
+    djArmed=false;
+    if(!LAYERS.length)return;
+    var l=LAYERS.pop();
+    if(l)l.closer();
+    if(LAYERS.length)djArm();
+  });
+  /* 새로고침으로 남은 센티널 항목 정리 */
+  try{if(history.state&&history.state.djSentinel)history.replaceState(null,'')}catch(e){}
+  /* 드로어·모달 밖(갤러리 라이트박스)에서도 쓰는 공개 핸들 */
+  window.djLayers={open:djOpen,close:djClose};
+
   /* drawer */
-  function drawer(o){document.body.classList.toggle('drawer-open',o)}
+  var drawerEl=$('#drawer');
+  function drawer(o){
+    document.body.classList.toggle('drawer-open',o);
+    if(!drawerEl)return;
+    if(o)djOpen(drawerEl,function(){document.body.classList.remove('drawer-open')});
+    else djClose(drawerEl);
+  }
   $('#burger').addEventListener('click',function(){drawer(true)});
   $('#drawerBg').addEventListener('click',function(){drawer(false)});
   $('#drawerX').addEventListener('click',function(){drawer(false)});
-  $$('.drawer a.dl').forEach(function(a){a.addEventListener('click',function(){drawer(false)})});
+  $$('.drawer a.dl').forEach(function(a){a.addEventListener('click',function(e){
+    var href=a.getAttribute('href')||'';
+    if(href.charAt(0)==='#'){
+      e.preventDefault();
+      djReplacePin(href);
+      document.body.classList.remove('drawer-open');
+      var sec=document.getElementById(href.slice(1));
+      if(sec){try{sec.scrollIntoView({behavior:'smooth',block:'start'})}catch(_){sec.scrollIntoView()}}
+      return;
+    }
+    drawer(false);
+  })});
 
   /* modals */
-  function openM(id){$(id).classList.add('open');document.body.style.overflow='hidden'}
-  function closeM(m){m.classList.remove('open');if(!$('.modal.open'))document.body.style.overflow=''}
+  function openM(id){
+    var m=$(id); if(!m)return;
+    m.classList.add('open');document.body.style.overflow='hidden';
+    djOpen(m,function(){m.classList.remove('open');if(!$('.modal.open'))document.body.style.overflow=''});
+  }
+  function closeM(m){
+    m.classList.remove('open');if(!$('.modal.open'))document.body.style.overflow='';
+    djClose(m);
+  }
   $$('.modal').forEach(function(m){$$('[data-close]',m).forEach(function(c){c.addEventListener('click',function(){closeM(m)})})});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'){$$('.modal.open').forEach(closeM);drawer(false)}});
   $('#openPriv').addEventListener('click',function(){openM('#pvModal')});
@@ -1339,13 +1420,51 @@ html[data-theme="dark"] .st{background:rgba(166,146,255,.16);color:#C7BBFF}
   }
   $$('[data-open-booking]').forEach(function(b){b.addEventListener('click',function(){openBooking(b.getAttribute('data-room'))})});
   function msg(txt,err){var m=$('#bkMsg');m.textContent=txt;m.className='msg'+(err?' err':'');m.style.display='block'}
-  function sendBooking(payload){
-    if(!WEBHOOK_URL){store('dj_last_booking',JSON.stringify(payload));msg(t('ok'),false);return}
-    msg('...',false);
+  function sendBooking(payload,onDone,onFail){
+    var done=onDone||function(){msg(t('ok'),false)};
+    var fail=onFail||function(){msg(t('fail'),true)};
+    if(!WEBHOOK_URL){store('dj_last_booking',JSON.stringify(payload));done();return}
+    if(!onDone)msg('...',false);
     try{
       fetch(WEBHOOK_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)})
-        .then(function(){msg(t('ok'),false)}).catch(function(){msg(t('fail'),true)});
-    }catch(x){msg(t('fail'),true)}
+        .then(done).catch(fail);
+    }catch(x){fail()}
+  }
+  /* ── 모바일 결제창(리디렉션) 복귀용 임시 예약 저장 ──────────── */
+  var PENDING='dj_pending_booking';
+  function savePending(p){
+    try{sessionStorage.setItem(PENDING,JSON.stringify(p))}catch(e){}
+    try{localStorage.setItem(PENDING,JSON.stringify(p))}catch(e){}
+  }
+  function readPending(){
+    var v=null;
+    try{v=sessionStorage.getItem(PENDING)}catch(e){}
+    if(!v){try{v=localStorage.getItem(PENDING)}catch(e){}}
+    if(!v)return null;
+    try{return JSON.parse(v)}catch(e){return null}
+  }
+  function clearPending(){
+    try{sessionStorage.removeItem(PENDING)}catch(e){}
+    try{localStorage.removeItem(PENDING)}catch(e){}
+  }
+  function restorePending(p){
+    if(!p)return;
+    if(p.room){var r=$('input[name=room][value='+p.room+']');if(r)r.checked=true}
+    if(p.checkin)ci.value=p.checkin;
+    if(p.checkout)co.value=p.checkout;
+    if(p.guests)gs.value=p.guests;
+    if(p.name)$('#nm').value=p.name;
+    if(p.phoneCountry&&$('#cc')){
+      var cc=String(p.phoneCountry).replace('+','');
+      if($('#cc').querySelector('option[value="'+cc+'"]'))$('#cc').value=cc;
+    }
+    if(p.phoneLocal)$('#ph').value=p.phoneLocal;
+    if(p.email)$('#em').value=p.email;
+    if(p.request)$('#rq').value=p.request;
+    if($('#agree'))$('#agree').checked=!!p.privacyAgreed;
+    if($('#agreeTerms'))$('#agreeTerms').checked=!!p.termsAgreed;
+    try{renderTelHint()}catch(e){}
+    calc();
   }
   /* PortOne V2 결제 연동 */
   function loadPortOne(){
@@ -1365,6 +1484,7 @@ html[data-theme="dark"] .st{background:rgba(166,146,255,.16);color:#C7BBFF}
   function payAndSend(payload){
     var ch=(cur==='KRW')?(PAY.channelKeyKR||PAY.channelKeyGlobal):(PAY.channelKeyGlobal||PAY.channelKeyKR);
     msg('...',false);
+    savePending(payload);
     loadPortOne().then(function(PortOne){
       return PortOne.requestPayment({
         storeId:PAY.storeId,
@@ -1374,14 +1494,54 @@ html[data-theme="dark"] .st{background:rgba(166,146,255,.16);color:#C7BBFF}
         totalAmount:last.total,
         currency:'CURRENCY_KRW',
         payMethod:'CARD',
-        customer:{fullName:payload.name,phoneNumber:payload.phone,email:payload.email}
+        customer:{fullName:payload.name,phoneNumber:payload.phone,email:payload.email},
+        redirectUrl:window.location.origin+window.location.pathname,
+        windowType:{pc:'IFRAME',mobile:'REDIRECTION'}
       });
     }).then(function(r){
-      if(!r||r.code)return msg((r&&r.message)||t('fail'),true);
+      if(!r||r.code){clearPending();return msg((r&&r.message)||t('fail'),true)}
+      clearPending();
       payload.paymentId=r.paymentId||'';
+      payload.txId=r.txId||'';
       payload.pgProvider='PortOne';
-      sendBooking(payload);
-    }).catch(function(){msg(t('fail'),true)});
+      payload.paymentStatus='paid';
+      payload.paidAt=new Date().toISOString();
+      sendBooking(payload,function(){msg(t('pay_ok')+(payload.paymentId?' ('+payload.paymentId+')':''),false)});
+    }).catch(function(e){
+      clearPending();
+      msg(t('fail')+(e&&e.message?' · '+e.message:''),true);
+    });
+  }
+  /* ── 결제창 리디렉션 복귀 처리(모바일) ────────────────────── */
+  function handlePayReturn(){
+    var qs=null;
+    try{qs=new URLSearchParams(location.search)}catch(e){return false}
+    var pid=qs.get('paymentId')||'';
+    var code=qs.get('code')||'';
+    var message=qs.get('message')||qs.get('pgMessage')||'';
+    if(!pid&&!code&&!message)return false;
+    try{history.replaceState(null,'',location.pathname+location.hash)}catch(e){}
+    var p=readPending();
+    clearPending();
+    openBooking(p&&p.room);
+    restorePending(p);
+    if(pid&&!code){
+      var pay={};
+      if(p)for(var k in p)pay[k]=p[k];
+      pay.time=pay.time||new Date().toISOString();
+      pay.paymentId=pid;
+      pay.txId=qs.get('txId')||'';
+      pay.pgProvider='PortOne';
+      pay.paymentStatus='paid';
+      pay.paidAt=new Date().toISOString();
+      sendBooking(pay,function(){msg(t('pay_ok')+(pid?' ('+pid+')':''),false)});
+    }else if(pid||code){
+      msg(t('pay_fail')+(message?' · '+message:''),true);
+    }else{
+      msg(t('pay_unknown'),true);
+    }
+    try{window.scrollTo(0,0)}catch(e){}
+    return true;
   }
   $('#bkForm').addEventListener('submit',function(e){
     e.preventDefault();
@@ -1408,6 +1568,8 @@ html[data-theme="dark"] .st{background:rgba(166,146,255,.16);color:#C7BBFF}
   if(sc&&RATE[sc])cur=sc;else{cur={ko:'KRW',en:'USD',ja:'JPY',zh:'CNY'}[lang]||'KRW'}
   gs.innerHTML='';fillGuests();gs.value='2';
   applyLang();
+  /* 모바일 결제창에서 돌아온 경우: 결과 안내 + 예약 정보 복원 */
+  try{handlePayReturn()}catch(e){}
 
   /* PWA manifest (inline) */
   try{
@@ -1471,6 +1633,7 @@ html[data-theme="dark"] .st{background:rgba(166,146,255,.16);color:#C7BBFF}
     var curIdx = 0;
 
     function openLb(idx){
+      var wasOpen = lb.classList.contains('open');
       curIdx = (idx + figs.length) % figs.length;
       var im = figs[curIdx].querySelector('img');
       var cap = figs[curIdx].querySelector('figcaption span');
@@ -1479,10 +1642,16 @@ html[data-theme="dark"] .st{background:rgba(166,146,255,.16);color:#C7BBFF}
       lbCap.textContent = (cap ? cap.textContent : im.alt || '') + ' (' + (curIdx+1) + ' / ' + figs.length + ')';
       lb.classList.add('open');
       document.body.style.overflow = 'hidden';
+      if(!wasOpen && window.djLayers) window.djLayers.open(lb, closeLbVisual);
+    }
+    function closeLbVisual(){
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
     }
     function closeLb(){
       lb.classList.remove('open');
       document.body.style.overflow = '';
+      if(window.djLayers) window.djLayers.close(lb);
     }
     figs.forEach(function(fig, idx){
       fig.addEventListener('click', function(){ openLb(idx); });
