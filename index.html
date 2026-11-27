@@ -1197,6 +1197,10 @@ html[data-theme="dark"] .st{background:rgba(166,146,255,.16);color:#C7BBFF}
   I.ja.pay_fail="お支払いは完了していません。";
   I.zh.pay_ok="支付已完成。我们将尽快确认您的预订并与您联系。";
   I.zh.pay_fail="支付未完成。";
+  I.ko.already_paid="이미 결제가 완료된 예약입니다. 날짜나 객실을 바꾸면 새 예약으로 진행됩니다.";
+  I.en.already_paid="This booking has already been paid. Change the dates or room to start a new booking.";
+  I.ja.already_paid="すでにお支払いが完了している予約です。日付や客室を変更すると新しい予約になります。";
+  I.zh.already_paid="该预订已支付完成。更改日期或房型即为新预订。";
 
   var lang='ko', cur='KRW';
   function t(k){return (I[lang]&&I[lang][k])||(I.en&&I.en[k])||I.ko[k]||''}
@@ -1432,6 +1436,7 @@ html[data-theme="dark"] .st{background:rgba(166,146,255,.16);color:#C7BBFF}
   }
   /* ── 모바일 결제창(리디렉션) 복귀용 임시 예약 저장 ──────────── */
   var PENDING='dj_pending_booking';
+  var djPaidInfo=null; /* 같은 내용으로 두 번 결제되는 것을 막기 위한 직전 결제 정보 */
   function savePending(p){
     try{sessionStorage.setItem(PENDING,JSON.stringify(p))}catch(e){}
     try{localStorage.setItem(PENDING,JSON.stringify(p))}catch(e){}
@@ -1506,6 +1511,7 @@ html[data-theme="dark"] .st{background:rgba(166,146,255,.16);color:#C7BBFF}
       payload.pgProvider='PortOne';
       payload.paymentStatus='paid';
       payload.paidAt=new Date().toISOString();
+      djPaidInfo={ci:payload.checkin,co:payload.checkout,room:payload.room};
       sendBooking(payload,function(){msg(t('pay_ok')+(payload.paymentId?' ('+payload.paymentId+')':''),false)});
     }).catch(function(e){
       clearPending();
@@ -1534,6 +1540,7 @@ html[data-theme="dark"] .st{background:rgba(166,146,255,.16);color:#C7BBFF}
       pay.pgProvider='PortOne';
       pay.paymentStatus='paid';
       pay.paidAt=new Date().toISOString();
+      djPaidInfo={ci:pay.checkin,co:pay.checkout,room:pay.room};
       sendBooking(pay,function(){msg(t('pay_ok')+(pid?' ('+pid+')':''),false)});
     }else if(pid||code){
       msg(t('pay_fail')+(message?' · '+message:''),true);
@@ -1549,6 +1556,8 @@ html[data-theme="dark"] .st{background:rgba(166,146,255,.16);color:#C7BBFF}
     var tel=phoneE164();
     if(!$('#nm').value.trim()||tel.national.length<6||!/\S+@\S+\.\S+/.test($('#em').value))return msg(t('err_form'),true);
     if(!$('#agree').checked||!$('#agreeTerms').checked)return msg(t('err_agree'),true);
+    if(djPaidInfo&&djPaidInfo.ci===ci.value&&djPaidInfo.co===co.value&&djPaidInfo.room===last.room)return msg(t('already_paid'),true);
+    if(djPaidInfo)djPaidInfo=null;
     var payload={time:new Date().toISOString(),lang:lang,currency:cur,checkin:ci.value,checkout:co.value,nights:last.nights,guests:last.guests,room:last.room,rooms:last.rooms,totalKRW:last.total,name:$('#nm').value.trim(),phone:tel.e164,phoneCountry:'+'+tel.cc,phoneLocal:$('#ph').value.trim(),email:$('#em').value.trim(),request:$('#rq').value.trim(),privacyAgreed:true,termsAgreed:true};
     if(PAY.enabled){payAndSend(payload);return}
     sendBooking(payload);
