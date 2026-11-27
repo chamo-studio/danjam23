@@ -265,6 +265,12 @@ html[data-theme="dark"] .st{background:rgba(166,146,255,.16);color:#C7BBFF}
 .fld textarea{height:80px;padding:12px 14px;resize:vertical}
 .fld input:focus,.fld select:focus,.fld textarea:focus{outline:2px solid var(--brand);outline-offset:1px}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.telrow{display:flex;gap:8px;align-items:center}
+.telrow select{flex:0 0 auto;width:auto;min-width:104px;max-width:44%;padding:0 6px;font-size:14px;height:52px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.telrow input{flex:1;min-width:0;height:52px;border-radius:12px;border:1px solid var(--line);background:var(--surface);padding:0 14px;font-size:16px;width:100%}
+.telrow input:focus,.telrow select:focus{outline:2px solid var(--brand);outline-offset:1px}
+.telhint{font-size:11px;line-height:1.45;color:var(--muted);letter-spacing:0;font-weight:500}
+@media(max-width:420px){.telrow select{min-width:96px;font-size:13px}}
 .rpick{display:grid;gap:10px;margin-bottom:14px}
 .rpick label{display:flex;align-items:center;gap:12px;border:1.5px solid var(--line);border-radius:14px;padding:10px 12px;cursor:pointer;background:var(--surface)}
 .rpick input{position:absolute;opacity:0}
@@ -472,7 +478,7 @@ html[data-theme="dark"] .st{background:rgba(166,146,255,.16);color:#C7BBFF}
       <p class="lead reveal" data-i18n="why_s">처음 서울에 오신 분도, 큰 짐을 든 분도 걱정 없이 머무실 수 있도록 준비했습니다.</p>
       <div class="bento">
         <article class="bc reveal">
-          <div class="ph"><img loading="lazy" src="images/entrance.jpg" alt="충무로역 5번 출구 인근 단잠 23 입구"></div>
+          <div class="ph"><img loading="lazy" src="images/entrance.jpg?v=3" alt="충무로역 5번 출구 인근 단잠 23 입구"></div>
           <div class="tx"><span class="num">1</span><h3 data-i18n="w1_t">충무로역 5번 출구 도보 2분</h3><p data-i18n="w1_d">공항리무진 정류장이 바로 앞이라 공항에서 오시는 길도, 떠나는 길도 쉽습니다.</p><button class="btn" data-open-booking data-i18n="reserve">예약하기</button></div>
         </article>
         <article class="bc reveal">
@@ -618,7 +624,7 @@ html[data-theme="dark"] .st{background:rgba(166,146,255,.16);color:#C7BBFF}
       <div class="kicker reveal">LOCATION</div>
       <h2 class="h2 reveal" data-i18n-html="loc_t">찾아오는 길이<br><em>가장 쉬운 숙소</em></h2>
       <div class="loc">
-        <div class="ph reveal"><img loading="lazy" src="images/building.jpg" alt="단잠 23 건물 외관"></div>
+        <div class="ph reveal"><img loading="lazy" src="images/building.jpg?v=3" alt="단잠 23 건물 외관"></div>
         <div class="reveal">
           <ol class="steps">
             <li><i>1</i><div><b data-i18n="l1_t">지하철 · 충무로역 5번 출구</b><span data-i18n="l1_d">5번 출구로 나와 도보 약 2분입니다.</span></div></li>
@@ -642,7 +648,7 @@ html[data-theme="dark"] .st{background:rgba(166,146,255,.16);color:#C7BBFF}
         <details><summary data-i18n="q4">모닝 커피는 무료인가요?</summary><p data-i18n="a4">네, 옥상에서 무료 모닝 커피를 드실 수 있습니다.</p></details>
         <details><summary data-i18n="q5">취소·환불은 어떻게 되나요?</summary><p data-i18n="a5">비수기에는 체크인 2일 전까지 전액 환불되고, 성수기에는 체크인 10일 전까지 전액 환불됩니다. 자세한 일자별 환불률은 아래 [취소·환불 규정]에서 확인하실 수 있습니다.</p></details>
         <details><summary data-i18n="q6">결제 수단은 무엇인가요?</summary><p data-i18n="a6">국내·해외 발급 신용카드로 결제하실 수 있으며, 결제는 결제대행사 주식회사 포트원(PortOne)을 통해 처리됩니다(국내카드 KG이니시스 · 해외카드 KICC 이지페이).</p></details>
-        <details><summary>전화로 문의할 수 있나요?</summary><p>네, 대표전화 <a href="tel:0220885843" style="color:var(--brand);font-weight:700">02-2088-5843</a> 으로 문의하실 수 있습니다.</p></details>
+        <details><summary>전화로 문의할 수 있나요?</summary><p>네, 대표전화 <a href="tel:+82220885843" style="color:var(--brand);font-weight:700">02-2088-5843 (+82-2-2088-5843)</a> 으로 문의하실 수 있습니다.</p></details>
       </div>
       <div class="paylinks" style="justify-content:center;margin-top:26px">
         <button class="btn ghost" type="button" data-open-policy="terms" data-i18n="terms">이용약관</button>
@@ -668,11 +674,11 @@ html[data-theme="dark"] .st{background:rgba(166,146,255,.16);color:#C7BBFF}
       <p><span data-i18n="f_rep">대표</span>: 류용기</p>
       <p><span data-i18n="f_reg">사업자등록번호</span>: 795-87-03519</p>
       <p><span>통신판매업신고</span>: 제2026-서울중구-0000호 <span style="color:#C7BBFF">(신고 진행 중)</span></p>
-      <p><span data-i18n="f_tel">대표전화</span>: <a href="tel:0220885843">02-2088-5843</a></p>
+      <p><span data-i18n="f_tel">대표전화</span>: <a href="tel:+82220885843">02-2088-5843 (+82-2-2088-5843)</a></p>
     </div>
     <div>
       <h4 data-i18n="f_loc">주소</h4>
-      <ul><li data-i18n="f_addr">서울특별시 중구 퇴계로27길 8 (필동1가)</li><li>충무로역 5번 출구 도보 2분 · 공항리무진 정류장 앞</li><li>Tel: <a href="tel:0220885843">02-2088-5843</a></li></ul>
+      <ul><li data-i18n="f_addr">서울특별시 중구 퇴계로27길 8 (필동1가)</li><li>충무로역 5번 출구 도보 2분 · 공항리무진 정류장 앞</li><li>Tel: <a href="tel:+82220885843">02-2088-5843 (+82-2-2088-5843)</a></li></ul>
     </div>
     <div>
       <h4 data-i18n="f_stay">이용 안내</h4>
@@ -695,7 +701,7 @@ html[data-theme="dark"] .st{background:rgba(166,146,255,.16);color:#C7BBFF}
   </div>
   <div class="foot-biz" style="max-width:1200px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.12);font-size:13px;color:#9AA0A8;line-height:1.95">
     <p><b style="color:#fff">주식회사 단잠</b> · 대표 류용기 · 사업자등록번호 795-87-03519 · 통신판매업신고 제2026-서울중구-0000호(신고 진행 중)</p>
-    <p>사업장 주소: 서울특별시 중구 퇴계로27길 8 (필동1가) · 대표전화 <a href="tel:0220885843">02-2088-5843</a> · 개인정보보호책임자 류용기</p>
+    <p>사업장 주소: 서울특별시 중구 퇴계로27길 8 (필동1가) · 대표전화 <a href="tel:+82220885843">02-2088-5843 (+82-2-2088-5843)</a> · 개인정보보호책임자 류용기</p>
     <p>결제대행: 주식회사 포트원(PortOne) · 국내카드 KG이니시스 · 해외카드 KICC 이지페이</p>
   </div>
   <div class="copy">© 2026 DANJAM 23. All rights reserved.</div>
@@ -726,7 +732,10 @@ html[data-theme="dark"] .st{background:rgba(166,146,255,.16);color:#C7BBFF}
         </div>
         <div class="two">
           <div class="fld"><label for="nm" data-i18n="name">이름</label><input id="nm" autocomplete="name" required></div>
-          <div class="fld"><label for="ph" data-i18n="phone">연락처</label><input id="ph" type="tel" autocomplete="tel" required></div>
+          <div class="fld"><label for="ph" data-i18n="phone">연락처</label>
+            <div class="telrow"><select id="cc" autocomplete="tel-country-code" aria-label="국가번호"></select><input id="ph" type="tel" autocomplete="tel-national" inputmode="tel" required></div>
+            <div class="telhint" id="telHint" aria-live="polite"></div>
+          </div>
         </div>
         <div class="fld"><label for="em" data-i18n="email">이메일</label><input id="em" type="email" autocomplete="email" required></div>
         <div class="fld"><label for="rq" data-i18n="req">요청사항 (선택)</label><textarea id="rq"></textarea></div>
@@ -983,21 +992,109 @@ html[data-theme="dark"] .st{background:rgba(166,146,255,.16);color:#C7BBFF}
   document.documentElement.classList.add('js');
   var WEBHOOK_URL = ""; /* 구글 시트 Apps Script 웹훅 URL을 여기에 입력 */
   /* ── PortOne V2 카드결제 설정 ────────────────────────────────
-     포트원 전자결제 재심사·KG이니시스/KICC 전자계약 완료 후 아래 3개 값을 채우고
-     enabled 를 true 로 바꾸면 예약 버튼이 실제 카드 결제창을 엽니다.
+     현재는 포트원 테스트 채널로 연결돼 있습니다(실제 승인·정산 없음).
+     실계약 채널키가 발급되면 storeId 는 그대로 두고
+     channelKeyKR(국내카드) · channelKeyGlobal(해외카드) 만 실연동 값으로 교체하면 됩니다.
      storeId           : 포트원 콘솔 > 결제연동 > 식별코드(Store ID)
      channelKeyKR      : KG이니시스 채널키 (국내 발급 카드)
      channelKeyGlobal  : KICC 이지페이 채널키 (해외 발급 카드)
   ─────────────────────────────────────────────────────────── */
   var PAY = {
-    storeId: "",
-    channelKeyKR: "",
+    storeId: "store-0797ceff-dd99-471d-90fd-7e3ac595d80c",
+    channelKeyKR: "channel-key-fac15902-37af-4d9e-b22d-d5dcaeada173",
     channelKeyGlobal: "",
-    enabled: false
+    enabled: true,
+    testMode: true
   };
   var RATE = {KRW:1, USD:1/1380, JPY:1/9.3, EUR:1/1490, CNY:1/190, GBP:1/1750, THB:1/40, SGD:1/1030};
   var CUR_LOCALE = {KRW:'ko-KR',USD:'en-US',JPY:'ja-JP',EUR:'de-DE',CNY:'zh-CN',GBP:'en-GB',THB:'th-TH',SGD:'en-SG'};
   var ROOMS = {twin:{p:170000,cap:2},double:{p:170000,cap:2},single:{p:170000,cap:1}};
+
+  /* 국가번호 목록 — z:1 이으면 앞자리 0을 자동 제거(국내 표기 → 국제 표기), ex는 국내 번호 예시 */
+  var CC = [
+    {c:'82',ko:'대한민국',en:'Korea',z:1,ex:'1012345678'},
+    {c:'1',ko:'미국·캐나다',en:'USA · Canada',z:0,ex:'4155550123'},
+    {c:'81',ko:'일본',en:'Japan',z:1,ex:'9012345678'},
+    {c:'86',ko:'중국',en:'China',z:0,ex:'13812345678'},
+    {c:'886',ko:'대만',en:'Taiwan',z:1,ex:'912345678'},
+    {c:'66',ko:'태국',en:'Thailand',z:1,ex:'812345678'},
+    {c:'84',ko:'베트남',en:'Vietnam',z:1,ex:'912345678'},
+    {c:'65',ko:'싱가포르',en:'Singapore',z:0,ex:'91234567'},
+    {c:'63',ko:'필리핀',en:'Philippines',z:1,ex:'9171234567'},
+    {c:'62',ko:'인도네시아',en:'Indonesia',z:1,ex:'81234567890'},
+    {c:'60',ko:'말레이시아',en:'Malaysia',z:1,ex:'123456789'},
+    {c:'44',ko:'영국',en:'United Kingdom',z:1,ex:'7911123456'},
+    {c:'33',ko:'프랑스',en:'France',z:1,ex:'612345678'},
+    {c:'49',ko:'독일',en:'Germany',z:1,ex:'15123456789'},
+    {c:'39',ko:'이탈리아',en:'Italy',z:0,ex:'3123456789'},
+    {c:'34',ko:'스페인',en:'Spain',z:0,ex:'612345678'},
+    {c:'7',ko:'러시아',en:'Russia',z:0,ex:'9161234567'},
+    {c:'971',ko:'아랍에미리트',en:'UAE',z:0,ex:'501234567'},
+    {c:'91',ko:'인도',en:'India',z:0,ex:'9876543210'},
+    {c:'90',ko:'튀르키예',en:'Türkiye',z:0,ex:'5321234567'},
+    {c:'31',ko:'네덜란드',en:'Netherlands',z:1,ex:'612345678'},
+    {c:'55',ko:'브라질',en:'Brazil',z:0,ex:'11987654321'},
+    {c:'61',ko:'호주',en:'Australia',z:1,ex:'412345678'},
+    {c:'852',ko:'홍콩',en:'Hong Kong',z:0,ex:'91234567'},
+    {c:'64',ko:'뉴질랜드',en:'New Zealand',z:1,ex:'211234567'},
+    {c:'52',ko:'멕시코',en:'Mexico',z:0,ex:'5512345678'},
+    {c:'976',ko:'몽골',en:'Mongolia',z:0,ex:'88123456'},
+    {c:'48',ko:'폴란드',en:'Poland',z:0,ex:'512345678'},
+    {c:'41',ko:'스위스',en:'Switzerland',z:1,ex:'791234567'},
+    {c:'351',ko:'포르투갈',en:'Portugal',z:0,ex:'912345678'},
+    {c:'972',ko:'이스라엘',en:'Israel',z:1,ex:'521234567'},
+    {c:'966',ko:'사우디아라비아',en:'Saudi Arabia',z:1,ex:'512345678'},
+    {c:'855',ko:'캄보디아',en:'Cambodia',z:1,ex:'12345678'},
+    {c:'95',ko:'미얀마',en:'Myanmar',z:1,ex:'912345678'},
+    {c:'380',ko:'우크라이나',en:'Ukraine',z:1,ex:'501234567'}
+  ];
+  /* 안내 문구 — z:앞 0을 빼는 국가, p:그대로 입력하는 국가, lb:국가번호 라벨 */
+  var TELH = {
+    ko:{lb:'국가번호',z:'맨 앞 0을 빼고 입력해 주세요 (예: {ex})',p:'지역번호·휴대폰 번호를 그대로 입력해 주세요 (예: {ex})'},
+    en:{lb:'Country code',z:'Leave out the leading 0 (e.g. {ex})',p:'Enter the number as it is (e.g. {ex})'},
+    ja:{lb:'国番号',z:'先頭の0を除いて入力してください（例: {ex}）',p:'番号をそのまま入力してください（例: {ex}）'},
+    zh:{lb:'国家代码',z:'请去掉开头的0后输入（例：{ex}）',p:'请直接输入号码（例：{ex}）'},
+    'zh-TW':{lb:'國碼',z:'請去掉開頭的0後輸入（例：{ex}）',p:'請直接輸入號碼（例：{ex}）'},
+    th:{lb:'รหัสประเทศ',z:'ตัดเลข 0 ตัวหน้าออก (เช่น {ex})',p:'กรอกหมายเลขตามจริง (เช่น {ex})'},
+    vi:{lb:'Mã quốc gia',z:'Bỏ số 0 ở đầu (ví dụ: {ex})',p:'Nhập số như bình thường (ví dụ: {ex})'},
+    id:{lb:'Kode negara',z:'Hilangkan angka 0 di depan (contoh: {ex})',p:'Masukkan nomor apa adanya (contoh: {ex})'},
+    ms:{lb:'Kod negara',z:'Buang angka 0 di hadapan (contoh: {ex})',p:'Masukkan nombor seperti biasa (contoh: {ex})'},
+    tl:{lb:'Country code',z:'Alisin ang 0 sa simula (hal. {ex})',p:'Ilagay ang numero nang ganito (hal. {ex})'},
+    es:{lb:'Código de país',z:'Omita el 0 inicial (ej.: {ex})',p:'Introduzca el número tal cual (ej.: {ex})'},
+    fr:{lb:'Indicatif',z:'Omettez le 0 initial (ex. : {ex})',p:'Saisissez le numéro tel quel (ex. : {ex})'},
+    de:{lb:'Landesvorwahl',z:'Ohne führende 0 eingeben (z. B. {ex})',p:'Nummer unverändert eingeben (z. B. {ex})'},
+    it:{lb:'Prefisso',z:'Omettere lo 0 iniziale (es. {ex})',p:'Inserire il numero così com\'è (es. {ex})'},
+    pt:{lb:'Código do país',z:'Omita o 0 inicial (ex.: {ex})',p:'Introduza o número como está (ex.: {ex})'},
+    ru:{lb:'Код страны',z:'Без ведущего 0 (напр. {ex})',p:'Введите номер как есть (напр. {ex})'},
+    ar:{lb:'رمز الدولة',z:'احذف الصفر في البداية (مثال: {ex})',p:'أدخل الرقم كما هو (مثال: {ex})'},
+    hi:{lb:'देश कोड',z:'शुरू का 0 हटाकर डालें (उदा. {ex})',p:'नंबर जैसा है वैसा ही डालें (उदा. {ex})'},
+    tr:{lb:'Ülke kodu',z:'Baştaki 0\'ı yazmayın (örn. {ex})',p:'Numarayı olduğu gibi girin (örn. {ex})'},
+    nl:{lb:'Landcode',z:'Laat de 0 aan het begin weg (bijv. {ex})',p:'Voer het nummer zo in (bijv. {ex})'}
+  };
+  var CC_BY_LANG = {'ko':'82','ja':'81','zh':'86','zh-TW':'886','th':'66','vi':'84','id':'62','ms':'60','tl':'63','es':'34','fr':'33','de':'49','it':'39','pt':'351','ru':'7','ar':'971','hi':'91','tr':'90','nl':'31','en':'1'};
+  function ccFind(code){for(var i=0;i<CC.length;i++)if(CC[i].c===code)return CC[i];return null}
+  function telText(){var L=TELH[lang]||TELH.en;return L}
+  function fillCC(){
+    var sel=$('#cc'); if(!sel)return;
+    var keep=sel.value;
+    sel.innerHTML=CC.map(function(o){return '<option value="'+o.c+'">+'+o.c+' '+(lang==='ko'?o.ko:o.en)+'</option>'}).join('');
+    sel.value = keep || CC_BY_LANG[lang] || '82';
+    if(!sel.value) sel.value='82';
+    sel.setAttribute('aria-label',telText().lb);
+  }
+  function renderTelHint(){
+    var sel=$('#cc'),h=$('#telHint'); if(!sel||!h)return;
+    var o=ccFind(sel.value)||CC[0], L=telText();
+    h.textContent=(o.z?L.z:L.p).replace('{ex}',o.ex);
+    var inp=$('#ph'); if(inp) inp.placeholder=o.ex;
+  }
+  function phoneE164(){
+    var sel=$('#cc'); var code=(sel&&sel.value)||'82'; var o=ccFind(code)||{z:0};
+    var d=(($('#ph')&&$('#ph').value)||'').replace(/[^0-9]/g,'');
+    if(o.z){while(d.charAt(0)==='0')d=d.slice(1)}
+    if(d.length>=code.length+8 && d.indexOf(code)===0) d=d.slice(code.length);
+    return {cc:code, national:d, e164:'+'+code+d};
+  }
 
   var I = {
   ko:{nav_why:"강점",nav_rooms:"객실",nav_gallery:"공간",nav_loc:"오시는 길",nav_faq:"FAQ",reserve:"예약하기",reserve_now:"실시간 예약하기",theme:"낮 / 밤 전환",
@@ -1105,6 +1202,7 @@ html[data-theme="dark"] .st{background:rgba(166,146,255,.16);color:#C7BBFF}
     $('#langSel').value=lang;$('#langSel2').value=lang;
     $('#bkSubmit').textContent = PAY.enabled ? t('pay_now') : t('submit');
     if(PAY.enabled && $('#payFlowNote'))$('#payFlowNote').textContent='· 예약 화면에서 카드 결제가 바로 진행됩니다. 결제창에는 결제대행사 주식회사 포트원과 PG사가 표시됩니다.';
+    fillCC();renderTelHint();
     fillGuests();applyPrices();calc();
   }
   function applyPrices(){
@@ -1228,6 +1326,9 @@ html[data-theme="dark"] .st{background:rgba(166,146,255,.16);color:#C7BBFF}
   });
   co.addEventListener('change',calc);gs.addEventListener('change',calc);
   $$('input[name=room]').forEach(function(r){r.addEventListener('change',calc)});
+  /* 국가번호 선택·번호 입력 시 안내 문구 자동 전환 */
+  if($('#cc'))$('#cc').addEventListener('change',function(){renderTelHint()});
+  if($('#ph'))$('#ph').addEventListener('input',function(){renderTelHint()});
   function openBooking(room){
     if(room){var r=$('input[name=room][value='+room+']');if(r)r.checked=true}
     if(!$('input[name=room]:checked'))$('input[name=room][value=twin]').checked=true;
@@ -1284,9 +1385,10 @@ html[data-theme="dark"] .st{background:rgba(166,146,255,.16);color:#C7BBFF}
   $('#bkForm').addEventListener('submit',function(e){
     e.preventDefault();
     if(!nights())return msg(t('err_dates'),true);
-    if(!$('#nm').value.trim()||!$('#ph').value.trim()||!/\S+@\S+\.\S+/.test($('#em').value))return msg(t('err_form'),true);
+    var tel=phoneE164();
+    if(!$('#nm').value.trim()||tel.national.length<6||!/\S+@\S+\.\S+/.test($('#em').value))return msg(t('err_form'),true);
     if(!$('#agree').checked||!$('#agreeTerms').checked)return msg(t('err_agree'),true);
-    var payload={time:new Date().toISOString(),lang:lang,currency:cur,checkin:ci.value,checkout:co.value,nights:last.nights,guests:last.guests,room:last.room,rooms:last.rooms,totalKRW:last.total,name:$('#nm').value.trim(),phone:$('#ph').value.trim(),email:$('#em').value.trim(),request:$('#rq').value.trim(),privacyAgreed:true,termsAgreed:true};
+    var payload={time:new Date().toISOString(),lang:lang,currency:cur,checkin:ci.value,checkout:co.value,nights:last.nights,guests:last.guests,room:last.room,rooms:last.rooms,totalKRW:last.total,name:$('#nm').value.trim(),phone:tel.e164,phoneCountry:'+'+tel.cc,phoneLocal:$('#ph').value.trim(),email:$('#em').value.trim(),request:$('#rq').value.trim(),privacyAgreed:true,termsAgreed:true};
     if(PAY.enabled){payAndSend(payload);return}
     sendBooking(payload);
   });
